@@ -1,21 +1,12 @@
 {
+  "extends": "@motion-canvas/2d/tsconfig.project.json",
+  "include": ["src"],
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "composite": true,
+    /* Alias */
     "baseUrl": ".",
     "paths": {
-      "@shared/*": ["packages/shared/src/*"],
-      "@assets/*": ["assets/*"],
-			"@scenes/*": ["packages/scenes/*"]
+      "@/*": ["./src/*"],
+      "@@/*": ["./*"]
     }
   }
 }

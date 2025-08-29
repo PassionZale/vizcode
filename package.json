@@ -1,32 +1,36 @@
 {
-  "name": "vizcode",
+  "name": "@code-sugar/vizcode",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Visualize My Ideas With Code",
-	"workspaces": [
-    "packages/shared",
-    "packages/scenes/*",
-    "packages/videos/*"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PassionZale/vizcode.git"
   },
-  "keywords": [],
+  "keywords": [
+    "motion-canvas",
+    "animation"
+  ],
   "author": "Lei Zhang",
   "license": "MIT",
+  "scripts": {
+    "start": "vite",
+    "serve": "vite",
+    "build": "tsc && vite build"
+  },
   "bugs": {
     "url": "https://github.com/PassionZale/vizcode/issues"
   },
   "homepage": "https://github.com/PassionZale/vizcode#readme",
   "dependencies": {
-    "@motion-canvas/core": "^3.17.2",
     "@motion-canvas/2d": "^3.17.2",
+    "@motion-canvas/core": "^3.17.2",
     "@motion-canvas/ffmpeg": "^1.1.0"
   },
   "devDependencies": {
     "@motion-canvas/ui": "^3.17.2",
     "@motion-canvas/vite-plugin": "^3.17.2",
+    "@types/node": "^24.3.0",
     "typescript": "^5.2.2",
     "vite": "^4.0.0"
   }

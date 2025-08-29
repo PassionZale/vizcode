@@ -8,7 +8,5 @@ export default makeScene2D(function* (view) {
 
   view.add(<Circle ref={circle} size={320} fill={'lightseagreen'} />);
 
-	view.add(<Txt>123</Txt>)
-
   yield* circle().scale(2, 2).to(1, 2);
 });

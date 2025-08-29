@@ -1,5 +1,5 @@
-import { makeScene2D, Code, lines } from "@motion-canvas/2d";
-import { createRef, DEFAULT, waitFor } from "@motion-canvas/core";
+import { makeScene2D, Code } from "@motion-canvas/2d";
+import { all, createRef, DEFAULT, waitFor } from "@motion-canvas/core";
 
 import { JavascriptCode } from "@/nodes/Code";
 
@@ -10,21 +10,24 @@ export default makeScene2D(function* (view) {
     <JavascriptCode
       ref={code}
       fontSize={28}
-      offsetX={-1}
-      x={-400}
-      code={`\
-function hello() {
-  console.log('Hello');
-}`}
+      fontFamily={"JetBrains Mono, monospace"}
+      code={"const number = 7;"}
     />
   );
 
-  yield* code().selection(code().findAllRanges(/hello/gi), 0.6);
-  yield* waitFor(0.3);
+  yield* waitFor(0.6);
+  yield* all(
+    code().code.replace(code().findFirstRange("number"), "variable", 0.6),
+    code().code.prepend(0.6)`function example() {\n  `,
+    code().code.append(0.6)`\n}`
+  );
 
-  yield* code().selection(lines(1), 0.6);
-  yield* waitFor(0.3);
+  yield* waitFor(0.6);
+  yield* code().selection(code().findFirstRange("variable"), 0.6);
 
-  yield* code().selection(DEFAULT, 0.6);
-  yield* waitFor(0.3);
+  yield* waitFor(0.6);
+  yield* all(
+    code().code("const number = 7;", 0.6),
+    code().selection(DEFAULT, 0.6)
+  );
 });

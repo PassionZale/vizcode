@@ -1,0 +1,11 @@
+{
+  "extends": "@motion-canvas/2d/tsconfig.project.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["packages/shared/src/*"],
+      "@assets/*": ["assets/*"],
+      "@scenes/*": ["scenes/*"]
+    }
+  }
+}

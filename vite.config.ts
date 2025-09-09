@@ -9,6 +9,7 @@ export default defineConfig({
       project: [
         "./src/projects/example/index.ts",
         "./src/projects/self-intro/index.ts",
+        "./src/projects/code-journey/index.ts",
       ],
     }),
     ffmpeg(),

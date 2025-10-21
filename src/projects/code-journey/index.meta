@@ -1,14 +1,14 @@
 {
   "version": 0,
   "shared": {
-    "background": "rgb(20,20,20)",
+    "background": "rgb(0,0,0)",
     "range": [
       0,
       null
     ],
     "size": {
-      "x": 720,
-      "y": 1280
+      "x": 1080,
+      "y": 1920
     },
     "audioOffset": 0
   },
@@ -17,7 +17,7 @@
     "resolutionScale": 1
   },
   "rendering": {
-    "fps": 30,
+    "fps": 60,
     "resolutionScale": 1,
     "colorSpace": "srgb",
     "exporter": {

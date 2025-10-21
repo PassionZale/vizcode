@@ -1,6 +1,7 @@
 import { makeProject } from "@motion-canvas/core";
-import index from "./scenes/index?scene";
+import aRol from "./scenes/a-rol?scene";
+import scene_2014 from "./scenes/2014?scene";
 
 export default makeProject({
-  scenes: [index],
+  scenes: [aRol, scene_2014],
 });

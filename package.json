@@ -14,7 +14,7 @@
   "author": "Lei Zhang",
   "license": "MIT",
   "scripts": {
-    "start": "vite",
+    "dev": "vite",
     "serve": "vite",
     "build": "tsc && vite build"
   },

@@ -53,7 +53,7 @@ export default makeScene2D(function* (view) {
     </Rect>
   );
 
-  yield* titleRef().text("2015", 1);
+  yield* titleRef().text("2024", 1);
 
-  yield* waitUntil("2015_end");
+  yield* waitUntil("2024_end");
 });

@@ -1,7 +1,7 @@
 import { Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { createRef, waitFor, waitUntil } from "@motion-canvas/core";
+import { createRef, waitUntil } from "@motion-canvas/core";
 import logoSvg from "../assets/logo.svg";
-import { TextStyles } from "../../../shared/text-styles";
+import { TextStyles } from "@/shared/text-styles";
 
 export default makeScene2D(function* (view) {
   const titleRef = createRef<Txt>();
@@ -20,9 +20,7 @@ export default makeScene2D(function* (view) {
           <Img size={[180, 180]} src={logoSvg} />
         </Rect>
 
-        <Txt ref={titleRef} {...TextStyles.title}>
-          2014
-        </Txt>
+        <Txt ref={titleRef} {...TextStyles.title}></Txt>
       </Rect>
 
       <Rect grow={1}>{/* <Txt {...TextStyles.subtitle}>456</Txt> */}</Rect>
@@ -55,7 +53,7 @@ export default makeScene2D(function* (view) {
     </Rect>
   );
 
-  yield* waitUntil("2014_end");
+  yield* titleRef().text("2014", 0.5);
 
-  yield* titleRef().text("2015", 1);
+  yield* waitUntil("2014_end");
 });

@@ -1,9 +1,22 @@
 import { makeProject } from "@motion-canvas/core";
-import aRol from "./scenes/a-rol?scene";
+import begin from "./scenes/begin?scene";
 import scene_2014 from "./scenes/2014?scene";
 import scene_2015 from "./scenes/2015?scene";
 import scene_2016_2018 from "./scenes/2016_2018?scene";
+import scene_2019 from "./scenes/2019?scene";
+import scene_2020_2023 from "./scenes/2020_2023?scene";
+import scene_2024 from "./scenes/2024?scene";
+import end from "./scenes/end?scene"
 
 export default makeProject({
-  scenes: [aRol, scene_2014, scene_2015, scene_2016_2018],
+  scenes: [
+    begin,
+    scene_2014,
+    scene_2015,
+    scene_2016_2018,
+    scene_2019,
+    scene_2020_2023,
+    scene_2024,
+		end,
+  ],
 });

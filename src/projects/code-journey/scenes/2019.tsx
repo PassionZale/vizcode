@@ -1,7 +1,7 @@
 import { Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { createRef, waitFor, waitUntil } from "@motion-canvas/core";
+import { createRef, waitUntil } from "@motion-canvas/core";
 import logoSvg from "../assets/logo.svg";
-import { TextStyles } from "../../../shared/text-styles";
+import { TextStyles } from "@/shared/text-styles";
 
 export default makeScene2D(function* (view) {
   const titleRef = createRef<Txt>();
@@ -23,9 +23,7 @@ export default makeScene2D(function* (view) {
         <Txt ref={titleRef} {...TextStyles.title}></Txt>
       </Rect>
 
-      <Rect grow={1} layout alignItems={"center"} justifyContent={"center"}>
-        <Txt {...TextStyles.title}>A-rolling...</Txt>
-      </Rect>
+      <Rect grow={1}>{/* <Txt {...TextStyles.subtitle}>456</Txt> */}</Rect>
 
       <Rect
         size={["100%", "25%"]}
@@ -55,9 +53,7 @@ export default makeScene2D(function* (view) {
     </Rect>
   );
 
-  yield* titleRef().text("Code Journey", 1);
+  yield* titleRef().text("2019", 1);
 
-  yield* waitUntil("arol_end");
-
-  yield* titleRef().text("2014", 0.5);
+  yield* waitUntil("2019_end");
 });

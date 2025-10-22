@@ -23,7 +23,9 @@ export default makeScene2D(function* (view) {
         <Txt ref={titleRef} {...TextStyles.title}></Txt>
       </Rect>
 
-      <Rect grow={1}>{/* <Txt {...TextStyles.subtitle}>456</Txt> */}</Rect>
+      <Rect grow={1} layout alignItems={"center"} justifyContent={"center"}>
+        <Txt {...TextStyles.title}>A-rolling...</Txt>
+      </Rect>
 
       <Rect
         size={["100%", "25%"]}
@@ -53,7 +55,7 @@ export default makeScene2D(function* (view) {
     </Rect>
   );
 
-  yield* titleRef().text("2015", 1);
+  yield* titleRef().text("Code Journey", 1);
 
-  yield* waitUntil("2015_end");
+  yield* waitUntil("begin_end");
 });

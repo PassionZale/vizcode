@@ -1,54 +1,61 @@
-import { Grid, Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { all, createRef, waitFor, waitUntil } from "@motion-canvas/core";
+import { Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
+import { createRef, waitFor, waitUntil } from "@motion-canvas/core";
+import logoSvg from "../assets/logo.svg";
 import { TextStyles } from "../../../shared/text-styles";
 
 export default makeScene2D(function* (view) {
-  view.add(
-    <Grid width={"100%"} height={"100%"} stroke={"#666"} start={0} end={1} />
-  );
-
-  const rect = createRef<Rect>();
-  const txt = createRef<Txt>();
+  const titleRef = createRef<Txt>();
 
   view.add(
-    <Rect ref={rect} lineWidth={10} width={600} height={400} radius={20}>
-      <Txt ref={txt} {...TextStyles.title}>
-        2014
-      </Txt>
+    <Rect layout size={["100%", "100%"]} fill={"#121b21"} direction={"column"}>
+      <Rect
+        size={["100%", "25%"]}
+        layout
+        padding={[40, 20]}
+        direction="column"
+        alignItems="center"
+        justifyContent="space-around"
+      >
+        <Rect padding={20} fill={"#ffcc00"}>
+          <Img size={[180, 180]} src={logoSvg} />
+        </Rect>
+
+        <Txt ref={titleRef} {...TextStyles.title}>
+          2014
+        </Txt>
+      </Rect>
+
+      <Rect grow={1}>{/* <Txt {...TextStyles.subtitle}>456</Txt> */}</Rect>
+
+      <Rect
+        size={["100%", "25%"]}
+        layout
+        padding={40}
+        alignItems={"start"}
+        justifyContent={"center"}
+      >
+        <Txt {...TextStyles.title} fill={"#4285F4"}>
+          C
+        </Txt>
+        <Txt {...TextStyles.title} fill={"#FBBC05"}>
+          o
+        </Txt>
+        <Txt {...TextStyles.title} fill={"#EA4335"}>
+          d
+        </Txt>
+        <Txt {...TextStyles.title} fill={"#34A853"}>
+          e
+        </Txt>
+        <Txt {...TextStyles.title}>S</Txt>
+        <Txt {...TextStyles.title}>u</Txt>
+        <Txt {...TextStyles.title}>g</Txt>
+        <Txt {...TextStyles.title}>a</Txt>
+        <Txt {...TextStyles.title}>r</Txt>
+      </Rect>
     </Rect>
   );
 
-  yield* all(
-    rect().stroke("#fff", 1),
-    rect().fill("red", 1),
-    txt().fill("#fff", 1)
-  );
+  yield* waitUntil("2014_end");
 
-  // 等待3秒
-  yield* waitFor(3);
-
-  // 矩形和文字消失动画
-  yield* all(rect().opacity(0, 1), txt().opacity(0, 1));
-
-  const img = createRef<Img>();
-
-  yield view.add(
-    <Img
-      ref={img}
-      src="https://images.unsplash.com/photo-1679218407381-a6f1660d60e9"
-      width={300}
-      radius={20}
-      opacity={0}
-    />
-  );
-
-  // set the background using the color sampled from the image:
-  img().fill(img().getColorAtPoint(0));
-
-  yield* all(
-    img().size([100, 100], 1).to([300, null], 1),
-    img().radius(50, 1).to(20, 1),
-    img().opacity(0, 1).to(1, 1)
-  );
-  yield* waitFor(0.5);
+  yield* titleRef().text("2015", 1);
 });

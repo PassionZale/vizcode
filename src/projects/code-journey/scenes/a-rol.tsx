@@ -20,9 +20,7 @@ export default makeScene2D(function* (view) {
           <Img size={[180, 180]} src={logoSvg} />
         </Rect>
 
-        <Txt ref={titleRef} {...TextStyles.title}>
-          Code Journey
-        </Txt>
+        <Txt ref={titleRef} {...TextStyles.title}></Txt>
       </Rect>
 
       <Rect grow={1} layout alignItems={"center"} justifyContent={"center"}>
@@ -56,6 +54,8 @@ export default makeScene2D(function* (view) {
       </Rect>
     </Rect>
   );
+
+  yield* titleRef().text("Code Journey", 1);
 
   yield* waitUntil("arol_end");
 

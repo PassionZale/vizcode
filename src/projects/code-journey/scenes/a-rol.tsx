@@ -14,6 +14,7 @@ import {
   waitFor,
   waitUntil,
 } from "@motion-canvas/core";
+import { TextStyles } from "../../../shared/text-styles";
 
 const points: SplineProps["points"] = [
   [-240, -720],
@@ -64,7 +65,7 @@ export default makeScene2D(function* (view) {
 
   view.add(
     <>
-      <Txt position={points[0]} fill={"red"}>
+      <Txt position={points[0]} {...TextStyles.title} fill={"red"}>
         2024
       </Txt>
     </>

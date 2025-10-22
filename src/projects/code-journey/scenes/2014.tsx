@@ -1,5 +1,6 @@
 import { Grid, Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
 import { all, createRef, waitFor, waitUntil } from "@motion-canvas/core";
+import { TextStyles } from "../../../shared/text-styles";
 
 export default makeScene2D(function* (view) {
   view.add(
@@ -11,7 +12,7 @@ export default makeScene2D(function* (view) {
 
   view.add(
     <Rect ref={rect} lineWidth={10} width={600} height={400} radius={20}>
-      <Txt ref={txt} fontSize={100} fontWeight={600}>
+      <Txt ref={txt} {...TextStyles.title}>
         2014
       </Txt>
     </Rect>

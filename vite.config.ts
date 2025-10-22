@@ -7,8 +7,6 @@ export default defineConfig({
   plugins: [
     motionCanvas({
       project: [
-        "./src/projects/example/index.ts",
-        "./src/projects/self-intro/index.ts",
         "./src/projects/code-journey/index.ts",
       ],
     }),

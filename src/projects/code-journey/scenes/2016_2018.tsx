@@ -10,18 +10,26 @@ import { TextStyles } from "../../../shared/text-styles";
 export default makeScene2D(function* (view) {
   view.add(
     <Rect layout size={["100%", "100%"]} fill={"#121b21"} direction={"column"}>
-      <Rect size={["100%", 400]} layout direction="column" alignItems="center" justifyContent="center" gap={20}>
-        <Img size={[220, 220]} src={logoSvg} fill={"yellow"} />
+      <Rect
+        size={['100%', 400]}
+        layout
+				padding={[40, 20]}
+        direction="column"
+        alignItems="center"
+        justifyContent="space-between"
+				gap={40}
+      >
+        <Img size={[160, 160]} src={logoSvg} fill={"yellow"}/>
 
-				<Txt {...TextStyles.title}>10 Years Of Coding!</Txt>
+        <Txt {...TextStyles.title}>Title</Txt>
       </Rect>
 
-      <Rect size={["100%", "100%"]}>
-        <Txt {...TextStyles.body}>456</Txt>
+      <Rect grow={1}>
+        <Txt {...TextStyles.subtitle}>456</Txt>
       </Rect>
 
       <Rect size={["100%", 400]}>
-        <Txt {...TextStyles.body}>789</Txt>
+        <Txt {...TextStyles.subtitle}>789</Txt>
       </Rect>
     </Rect>
   );

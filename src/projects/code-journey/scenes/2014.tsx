@@ -94,9 +94,9 @@ export default makeScene2D(function* (view) {
           fill={"#030712"}
         >
           <Rect layout gap={20} padding={40}>
-            <Circle size={[20, 20]} fill={"#ff0800"} />
-            <Circle size={[20, 20]} fill={"#fdbc40"} />
-            <Circle size={[20, 20]} fill={"#35cd4b"} />
+            <Circle size={20} fill={"#ff0800"} />
+            <Circle size={20} fill={"#fdbc40"} />
+            <Circle size={20} fill={"#35cd4b"} />
           </Rect>
 
           <Rect grow={1} fill={"ffffff1a"} padding={40}>
@@ -158,9 +158,9 @@ class HelloWorld {
   yield* codeRef().code(
     `\
 /**
- * HelloWorld类 - 我的第一个Java程序
- * 包含主方法main作为程序入口点
- * 向控制台输出"Hello, World!"消息
+ * HelloWorld 类 - 我的第一个 Java 程序
+ * 包含主方法 main 作为程序入口点
+ * 向控制台输出 "Hello, World!" 消息
  */
 class HelloWorld {
     public static void main(String[] args) {

@@ -100,11 +100,13 @@ export default makeScene2D(function* (view) {
           </Rect>
 
           <Rect grow={1} fill={"ffffff1a"} padding={40}>
-            <JavaCode ref={codeRef} code={`// 👋 HelloWorld`} />
+            <JavaCode ref={codeRef} />
           </Rect>
         </Rect>
       </Rect>
     );
+
+  yield* codeRef().code("// 👋 HelloWorld", 0.6);
 
   yield* codeRef().code(
     `\

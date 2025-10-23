@@ -1,10 +1,15 @@
-import { Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { createRef, waitUntil } from "@motion-canvas/core";
-import logoSvg from "../assets/logo.svg";
+import { Circle, Code, Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
+import { all, createRef, waitUntil } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
+import { JavaCode } from "@/nodes/Code";
+import logoSvg from "../assets/logo.svg";
+import imgJpg from "../assets/2014.jpg";
 
 export default makeScene2D(function* (view) {
   const titleRef = createRef<Txt>();
+  const contentRef = createRef<Rect>();
+  const imageRef = createRef<Img>();
+  const codeRef = createRef<Code>();
 
   view.add(
     <Rect layout size={["100%", "100%"]} fill={"#121b21"} direction={"column"}>
@@ -23,7 +28,21 @@ export default makeScene2D(function* (view) {
         <Txt ref={titleRef} {...TextStyles.title}></Txt>
       </Rect>
 
-      <Rect grow={1}>{/* <Txt {...TextStyles.subtitle}>456</Txt> */}</Rect>
+      <Rect
+        ref={contentRef}
+        grow={1}
+        layout
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Img
+          ref={imageRef}
+          src={imgJpg}
+          width={700}
+          scale={0}
+          smoothing={true}
+        />
+      </Rect>
 
       <Rect
         size={["100%", "25%"]}
@@ -53,7 +72,101 @@ export default makeScene2D(function* (view) {
     </Rect>
   );
 
-  yield* titleRef().text("2014", 0.5);
+  yield* all(titleRef().text("2014", 0.5), imageRef().scale(1, 0.5));
+
+  yield* waitUntil("img_end");
+
+  yield* imageRef().scale(0, 0.5);
+
+  imageRef().remove();
+
+  contentRef()
+    .alignItems("start")
+    .justifyContent("start")
+    .add(
+      <Rect size={"100%"} paddingLeft={40} paddingRight={40}>
+        <Rect
+          layout
+          clip
+          direction={"column"}
+          size={"100%"}
+          radius={40}
+          fill={"#030712"}
+        >
+          <Rect layout gap={20} padding={40}>
+            <Circle size={[20, 20]} fill={"#ff0800"} />
+            <Circle size={[20, 20]} fill={"#fdbc40"} />
+            <Circle size={[20, 20]} fill={"#35cd4b"} />
+          </Rect>
+
+          <Rect grow={1} fill={"ffffff1a"} padding={40}>
+            <JavaCode ref={codeRef} code={`// 👋 HelloWorld`} />
+          </Rect>
+        </Rect>
+      </Rect>
+    );
+
+  yield* codeRef().code(
+    `\
+// 👋 HelloWorld
+class HelloWorld {}`,
+    0.6
+  );
+
+  yield* codeRef().code(
+    `\
+// 👋 HelloWorld
+class HelloWorld {
+
+}`,
+    0.6
+  );
+
+  yield* codeRef().code(
+    `\
+// 👋 HelloWorld
+class HelloWorld {
+    public static void main(String[] args) {}
+}`,
+    1
+  );
+
+  yield* codeRef().code(
+    `\
+// 👋 HelloWorld
+class HelloWorld {
+    public static void main(String[] args) {
+
+    }
+}`,
+    0.6
+  );
+
+  yield* codeRef().code(
+    `\
+// 👋 HelloWorld
+class HelloWorld {
+    public static void main(String[] args) {
+      System.out.println("Hello, World!");
+    }
+}`,
+    1
+  );
+
+  yield* codeRef().code(
+    `\
+/**
+ * HelloWorld类 - 我的第一个Java程序
+ * 包含主方法main作为程序入口点
+ * 向控制台输出"Hello, World!"消息
+ */
+class HelloWorld {
+    public static void main(String[] args) {
+      System.out.println("Hello, World!");
+    }
+}`,
+    1
+  );
 
   yield* waitUntil("2014_end");
 });

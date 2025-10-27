@@ -11,8 +11,6 @@ export default makeScene2D(function* (view) {
   const wuhanRef = createRef<Img>();
   const shenzhenRef = createRef<Img>();
   const lineRef = createRef<Spline>();
-  const blueRect = createRef<Rect>();
-  const yellowRect = createRef<Rect>();
 
   view.add(
     <Rect layout size={["100%", "100%"]} fill={"#121b21"} direction={"column"}>
@@ -42,7 +40,7 @@ export default makeScene2D(function* (view) {
             end={0.5}
           />
 
-          <Rect ref={blueRect} size={300} fill={"#4285F4"} scale={0} />
+          <Img ref={wuhanRef} src={wuhanPng} size={300} scale={0} />
 
           <Spline
             ref={lineRef}
@@ -57,7 +55,7 @@ export default makeScene2D(function* (view) {
             end={0}
           />
 
-          <Rect ref={yellowRect} size={300} fill={"#FBBC05"} scale={0} />
+          <Img ref={shenzhenRef} src={shenzhenPng} size={300} scale={0} />
         </Rect>
       </Rect>
 
@@ -96,12 +94,18 @@ export default makeScene2D(function* (view) {
   );
 
   yield* chain(
-    waitFor(1),
-    blueRect().scale(1, 1),
-    blueRect().position([-390, -330], 1),
-    yellowRect().scale(1, 1),
-    yellowRect().position([390, 330], 1),
+    wuhanRef().scale(1, 1),
+    wuhanRef().position([-390, -330], 1),
+    shenzhenRef().scale(1, 1),
+    shenzhenRef().position([390, 330], 1),
     lineRef().end(1, 1.5)
+  );
+
+  yield* chain(
+    waitFor(1),
+    shenzhenRef().scale(0, 1),
+    lineRef().end(0, 1.5),
+    wuhanRef().scale(0, 1)
   );
 
   yield* waitUntil("2015_end");

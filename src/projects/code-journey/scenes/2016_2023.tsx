@@ -145,5 +145,32 @@ export default makeScene2D(function* (view) {
 
   yield* brainRef().size(200, 1);
 
+  yield* waitUntil("skill_end");
+
+  skillRef().removeChildren();
+
+	// TODO Camara
+
+	// 基于 Astro 的博客 lovchun.com-next
+	// https://github.com/PassionZale/lovchun.com-next
+
+	// 基于 Vue3 的组件库 geist-design
+	// https://github.com/PassionZale/geist-design
+
+	// 基于 Nodejs 的脚手架 create-app
+	// https://github.com/PassionZale/create-app
+
+	// TS 类型体操
+	// https://github.com/PassionZale/type-challenges
+
+	// 基于 Nextjs 的发布器 release-viewer
+	// https://github.com/PassionZale/release-viewer
+
+	// 基于 Slidev 的 talks
+	// https://talks.lovchun.com/2023/setup-miniprogram
+	// https://talks.lovchun.com/2024/happy-coding-for-10-years
+
+  skillRef().add(<Circle size={300} fill={"yellow"} />);
+
   yield* waitUntil("2016_2023_end");
 });

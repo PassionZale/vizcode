@@ -1,10 +1,71 @@
-import { Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { createRef, waitUntil } from "@motion-canvas/core";
+import {
+  Circle,
+  Icon,
+  IconProps,
+  Img,
+  ImgProps,
+  makeScene2D,
+  Rect,
+  Spline,
+  Txt,
+} from "@motion-canvas/2d";
+import { all, createRef, waitFor, waitUntil } from "@motion-canvas/core";
 import logoSvg from "../assets/logo.svg";
+import slidevSvg from "../assets/slidev.svg";
 import { TextStyles } from "@/shared/text-styles";
+
+const ICONS = [
+  "skill-icons:ubuntu-light",
+  "skill-icons:nginx",
+  "skill-icons:mysql-light",
+  "skill-icons:php-light",
+  "skill-icons:github-light",
+  "skill-icons:docker",
+  "skill-icons:html",
+  "skill-icons:css",
+  "skill-icons:nodejs-light",
+  "skill-icons:npm-light",
+  "skill-icons:webpack-light",
+  "skill-icons:typescript",
+  "skill-icons:astro",
+  "skill-icons:vite-light",
+  "skill-icons:tailwindcss-light",
+  "skill-icons:vuejs-light",
+  "skill-icons:react-light",
+  "skill-icons:nextjs-light",
+  "skill-icons:vercel-light",
+  slidevSvg,
+];
+
+const POSITIONS: IconProps["position"][] = [
+  [-160, -470],
+  [-310, -370],
+  [-400, -210],
+  [-460, -30],
+  [-400, 170],
+  [-320, 350],
+  [-160, 470],
+  [160, 470],
+  [310, 350],
+  [400, 170],
+  [460, -30],
+  [400, -210],
+  [310, -370],
+  [160, -470],
+  [-160, -230],
+  [-235, 10],
+  [-160, 250],
+  [160, -230],
+  [235, 10],
+  [160, 250],
+];
 
 export default makeScene2D(function* (view) {
   const titleRef = createRef<Txt>();
+  const skillRef = createRef<Rect>();
+  const iconRefs = Array.from({ length: ICONS.length }, () =>
+    createRef<Icon | Img>()
+  );
 
   view.add(
     <Rect layout size={["100%", "100%"]} fill={"#121b21"} direction={"column"}>
@@ -24,8 +85,7 @@ export default makeScene2D(function* (view) {
       </Rect>
 
       <Rect grow={1}>
-        <Rect layout={false}>
-				</Rect>
+        <Rect ref={skillRef} layout={false} />
       </Rect>
 
       <Rect
@@ -57,6 +117,25 @@ export default makeScene2D(function* (view) {
   );
 
   yield* titleRef().text("2016 ~ 2023", 1);
+
+  for (let i = 0; i < ICONS.length; i++) {
+    yield* waitFor(0.1);
+
+    skillRef().add(
+      i === ICONS.length - 1 ? (
+        <Img ref={iconRefs[i]} src={ICONS[i]} size={200} />
+      ) : (
+        <Icon ref={iconRefs[i]} icon={ICONS[i]} size={200} />
+      )
+    );
+  }
+
+  for (let i = POSITIONS.length - 1; i >= 0; i--) {
+    yield* all(
+      iconRefs[i]().size(100, 0.2),
+      iconRefs[i]().position(POSITIONS[i], 0.2)
+    );
+  }
 
   yield* waitUntil("2016_2023_end");
 });

@@ -108,5 +108,7 @@ export default makeScene2D(function* (view) {
     wuhanRef().scale(0, 1)
   );
 
+  yield* all(gridRef().start(0.5, 1).to(0, 1), gridRef().end(0.5, 1).to(0, 1));
+
   yield* waitUntil("2015_end");
 });

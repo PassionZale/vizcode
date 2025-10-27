@@ -1,10 +1,16 @@
-import { Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { createRef, waitUntil } from "@motion-canvas/core";
-import logoSvg from "../assets/logo.svg";
+import { Grid, Img, Line, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
+import { all, createRef, waitUntil } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
+import logoSvg from "../assets/logo.svg";
+import wuhanPng from "../assets/wuhan.png";
+import shenzhenPng from "../assets/shenzhen.png";
 
 export default makeScene2D(function* (view) {
   const titleRef = createRef<Txt>();
+  const gridRef = createRef<Grid>();
+  const shenzhenRef = createRef<Img>();
+  const lineRef = createRef<Line>();
+  const wuhanRef = createRef<Img>();
 
   view.add(
     <Rect layout size={["100%", "100%"]} fill={"#121b21"} direction={"column"}>
@@ -23,7 +29,7 @@ export default makeScene2D(function* (view) {
         <Txt ref={titleRef} {...TextStyles.title}></Txt>
       </Rect>
 
-      <Rect grow={1}>{/* <Txt {...TextStyles.subtitle}>456</Txt> */}</Rect>
+      <Grid ref={gridRef} grow={1} stroke={"#666"} start={0.5} end={0.5}></Grid>
 
       <Rect
         size={["100%", "25%"]}
@@ -53,7 +59,11 @@ export default makeScene2D(function* (view) {
     </Rect>
   );
 
-  yield* titleRef().text("2015", 1);
+  yield* all(
+    titleRef().text("2015", 1),
+    gridRef().start(0.5, 1).to(0, 1),
+    gridRef().end(0.5, 1).to(1, 1)
+  );
 
   yield* waitUntil("2015_end");
 });

@@ -23,7 +23,11 @@ export default makeScene2D(function* (view) {
         <Txt ref={titleRef} {...TextStyles.title}></Txt>
       </Rect>
 
-      <Rect grow={1}>{/* <Txt {...TextStyles.subtitle}>456</Txt> */}</Rect>
+      <Rect grow={1}>
+				各种技能点
+
+				再展示开源项目卡片
+			</Rect>
 
       <Rect
         size={["100%", "25%"]}

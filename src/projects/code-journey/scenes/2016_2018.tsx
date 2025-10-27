@@ -23,7 +23,11 @@ export default makeScene2D(function* (view) {
         <Txt ref={titleRef} {...TextStyles.title}></Txt>
       </Rect>
 
-      <Rect grow={1}>{/* <Txt {...TextStyles.subtitle}>456</Txt> */}</Rect>
+      <Rect grow={1}>
+				https://motioncanvas.io/docs/effects#complex-example
+				LNMP Linux Nginx Mysql PHP 按上面动画展示一波
+				搭建博客（展示博客截图， 至此，我写的文章，全世界都能看到）
+			</Rect>
 
       <Rect
         size={["100%", "25%"]}

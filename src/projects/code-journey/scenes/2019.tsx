@@ -23,7 +23,14 @@ export default makeScene2D(function* (view) {
         <Txt ref={titleRef} {...TextStyles.title}></Txt>
       </Rect>
 
-      <Rect grow={1}>{/* <Txt {...TextStyles.subtitle}>456</Txt> */}</Rect>
+      <Rect grow={1}>
+				- `Node.js`
+- `NPM`
+- `Webpack`
+- `Vue.js`
+
+还没想好。。。
+			</Rect>
 
       <Rect
         size={["100%", "25%"]}

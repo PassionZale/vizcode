@@ -67,6 +67,8 @@ export default makeScene2D(function* (view) {
     createRef<Icon | Img>()
   );
 
+  const brainRef = createRef<Icon>();
+
   view.add(
     <Rect layout size={["100%", "100%"]} fill={"#121b21"} direction={"column"}>
       <Rect
@@ -116,7 +118,7 @@ export default makeScene2D(function* (view) {
     </Rect>
   );
 
-  yield* titleRef().text("2016 ~ 2023", 1);
+  yield* titleRef().text("2016 ~ 2023", 0.5).wait(0.5);
 
   for (let i = 0; i < ICONS.length; i++) {
     yield* waitFor(0.1);
@@ -136,6 +138,12 @@ export default makeScene2D(function* (view) {
       iconRefs[i]().position(POSITIONS[i], 0.2)
     );
   }
+
+  skillRef().add(
+    <Icon ref={brainRef} icon="emojione:clapping-hands-light-skin-tone" />
+  );
+
+  yield* brainRef().size(200, 1);
 
   yield* waitUntil("2016_2023_end");
 });

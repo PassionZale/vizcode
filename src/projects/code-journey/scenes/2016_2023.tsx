@@ -171,6 +171,9 @@ export default makeScene2D(function* (view) {
   // https://talks.lovchun.com/2023/setup-miniprogram
   // https://talks.lovchun.com/2024/happy-coding-for-10-years
 
+	// MCP Server Routine Bot
+	// https://github.com/PassionZale/mcp-server-routine-bot
+
   skillRef().add(<Circle size={300} fill={"yellow"} />);
 
   yield* waitUntil("2016_2023_end");

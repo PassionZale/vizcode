@@ -3,16 +3,16 @@ import {
   Icon,
   IconProps,
   Img,
-  ImgProps,
   makeScene2D,
   Rect,
-  Spline,
   Txt,
+  Video,
 } from "@motion-canvas/2d";
 import { all, createRef, waitFor, waitUntil } from "@motion-canvas/core";
+import { TextStyles } from "@/shared/text-styles";
 import logoSvg from "../assets/logo.svg";
 import slidevSvg from "../assets/slidev.svg";
-import { TextStyles } from "@/shared/text-styles";
+import clapWebm from "../assets/clap.webm";
 
 const ICONS = [
   "skill-icons:ubuntu-light",
@@ -67,7 +67,7 @@ export default makeScene2D(function* (view) {
     createRef<Icon | Img>()
   );
 
-  const brainRef = createRef<Icon>();
+  const videoRef = createRef<Video>();
 
   view.add(
     <Rect layout size={["100%", "100%"]} fill={"#121b21"} direction={"column"}>
@@ -132,43 +132,44 @@ export default makeScene2D(function* (view) {
     );
   }
 
-  for (let i = POSITIONS.length - 1; i >= 0; i--) {
-    yield* all(
-      iconRefs[i]().size(100, 0.2),
-      iconRefs[i]().position(POSITIONS[i], 0.2)
-    );
-  }
-
-  skillRef().add(
-    <Icon ref={brainRef} icon="emojione:clapping-hands-light-skin-tone" />
+  yield* all(
+    ...iconRefs.map((ref, i) =>
+      all(ref().size(100, 0.8), ref().position(POSITIONS[i], 0.8))
+    )
   );
 
-  yield* brainRef().size(200, 1);
+  skillRef().add(
+    <Video ref={videoRef} src={clapWebm} scale={0} size={200} loop />
+  );
+
+  videoRef().play();
+
+  yield* videoRef().scale(1, 1);
 
   yield* waitUntil("skill_end");
 
   skillRef().removeChildren();
 
-	// TODO Camara
+  // TODO Camara
 
-	// 基于 Astro 的博客 lovchun.com-next
-	// https://github.com/PassionZale/lovchun.com-next
+  // 基于 Astro 的博客 lovchun.com-next
+  // https://github.com/PassionZale/lovchun.com-next
 
-	// 基于 Vue3 的组件库 geist-design
-	// https://github.com/PassionZale/geist-design
+  // 基于 Vue3 的组件库 geist-design
+  // https://github.com/PassionZale/geist-design
 
-	// 基于 Nodejs 的脚手架 create-app
-	// https://github.com/PassionZale/create-app
+  // 基于 Nodejs 的脚手架 create-app
+  // https://github.com/PassionZale/create-app
 
-	// TS 类型体操
-	// https://github.com/PassionZale/type-challenges
+  // TS 类型体操
+  // https://github.com/PassionZale/type-challenges
 
-	// 基于 Nextjs 的发布器 release-viewer
-	// https://github.com/PassionZale/release-viewer
+  // 基于 Nextjs 的发布器 release-viewer
+  // https://github.com/PassionZale/release-viewer
 
-	// 基于 Slidev 的 talks
-	// https://talks.lovchun.com/2023/setup-miniprogram
-	// https://talks.lovchun.com/2024/happy-coding-for-10-years
+  // 基于 Slidev 的 talks
+  // https://talks.lovchun.com/2023/setup-miniprogram
+  // https://talks.lovchun.com/2024/happy-coding-for-10-years
 
   skillRef().add(<Circle size={300} fill={"yellow"} />);
 

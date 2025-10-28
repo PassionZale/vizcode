@@ -3,11 +3,15 @@
   "timeEvents": [
     {
       "name": "skill_end",
-      "targetTime": 10.925938666350788
+      "targetTime": 12.948809843087133
+    },
+    {
+      "name": "code_demo_end",
+      "targetTime": 32.03880984308748
     },
     {
       "name": "2016_2023_end",
-      "targetTime": 16.637673453949553
+      "targetTime": 18.660544630685898
     }
   ],
   "seed": 1868478592

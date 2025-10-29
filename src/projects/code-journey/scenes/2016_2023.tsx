@@ -13,6 +13,7 @@ import { TextStyles } from "@/shared/text-styles";
 import logoSvg from "../assets/logo.svg";
 import slidevSvg from "../assets/slidev.svg";
 import clapWebm from "../assets/clap.webm";
+import projectLogo from "../assets/projects/logo.png";
 
 const ICONS = [
   "skill-icons:ubuntu-light",
@@ -58,6 +59,38 @@ const POSITIONS: IconProps["position"][] = [
   [160, -230],
   [235, 10],
   [160, 250],
+];
+
+// https://slama.dev/motion-canvas/introduction/
+// 每个 repo 单独搞一个 scene, 单独做一个 repo card(可以搞成组件)，单独的一段口播文案：例如 2016年我购买了域名 xxxx
+// 每个 repo 3 张截图，用上面这个示例展示，repo icon 使用各个项目的 favicon
+
+const Projects = [
+  {
+    name: "lovchun.com-next",
+    icon: projectLogo,
+    url: "https://www.lovchun.com/",
+  },
+  {
+    name: "TS 类型体操",
+    icon: projectLogo,
+    url: "https://tsch.lovchun.com/",
+  },
+  {
+    name: "geist-design",
+    icon: projectLogo,
+    url: "https://geist-design.lovchun.com/",
+  },
+  {
+    name: "create-app",
+    icon: projectLogo,
+    url: "https://create-app.lovchun.com/",
+  },
+  {
+    name: "release-viewer",
+    icon: projectLogo,
+    url: "https://release-viewer.lovchun.com/",
+  },
 ];
 
 export default makeScene2D(function* (view) {
@@ -118,16 +151,26 @@ export default makeScene2D(function* (view) {
     </Rect>
   );
 
-  yield* titleRef().text("2016 ~ 2023", 0.5).wait(0.5);
+  yield* titleRef().text("2016 ~ 2023", 0.5).wait(1);
 
   for (let i = 0; i < ICONS.length; i++) {
     yield* waitFor(0.1);
 
-    skillRef().add(
+    yield skillRef().add(
       i === ICONS.length - 1 ? (
-        <Img ref={iconRefs[i]} src={ICONS[i]} size={200} />
+        <Img
+          key={`skill-icon-${i}`}
+          ref={iconRefs[i]}
+          src={ICONS[i]}
+          size={200}
+        />
       ) : (
-        <Icon ref={iconRefs[i]} icon={ICONS[i]} size={200} />
+        <Icon
+          key={`skill-icon-${i}`}
+          ref={iconRefs[i]}
+          icon={ICONS[i]}
+          size={200}
+        />
       )
     );
   }
@@ -138,7 +181,7 @@ export default makeScene2D(function* (view) {
     )
   );
 
-  skillRef().add(
+  yield skillRef().add(
     <Video ref={videoRef} src={clapWebm} scale={0} size={200} loop />
   );
 
@@ -148,7 +191,7 @@ export default makeScene2D(function* (view) {
 
   yield* waitUntil("skill_end");
 
-  skillRef().removeChildren();
+  // skillRef().removeChildren();
 
   // TODO Camara
 
@@ -171,10 +214,10 @@ export default makeScene2D(function* (view) {
   // https://talks.lovchun.com/2023/setup-miniprogram
   // https://talks.lovchun.com/2024/happy-coding-for-10-years
 
-	// MCP Server Routine Bot
-	// https://github.com/PassionZale/mcp-server-routine-bot
+  // MCP Server Routine Bot
+  // https://github.com/PassionZale/mcp-server-routine-bot
 
-  skillRef().add(<Circle size={300} fill={"yellow"} />);
+  // skillRef().add(<Circle size={300} fill={"yellow"} />);
 
   yield* waitUntil("2016_2023_end");
 });

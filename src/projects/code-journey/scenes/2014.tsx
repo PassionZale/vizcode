@@ -11,7 +11,7 @@ export default makeScene2D(function* (view) {
   const imageRef = createRef<Img>();
   const codeRef = createRef<Code>();
 
-  view.add(
+  yield view.add(
     <Rect layout size={["100%", "100%"]} fill={"#121b21"} direction={"column"}>
       <Rect
         size={["100%", "25%"]}

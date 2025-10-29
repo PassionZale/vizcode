@@ -1,5 +1,4 @@
 import {
-  Circle,
   Icon,
   IconProps,
   Img,
@@ -13,7 +12,6 @@ import { TextStyles } from "@/shared/text-styles";
 import logoSvg from "../assets/logo.svg";
 import slidevSvg from "../assets/slidev.svg";
 import clapWebm from "../assets/clap.webm";
-import projectLogo from "../assets/projects/logo.png";
 
 const ICONS = [
   "skill-icons:ubuntu-light",
@@ -59,38 +57,6 @@ const POSITIONS: IconProps["position"][] = [
   [160, -230],
   [235, 10],
   [160, 250],
-];
-
-// https://slama.dev/motion-canvas/introduction/
-// 每个 repo 单独搞一个 scene, 单独做一个 repo card(可以搞成组件)，单独的一段口播文案：例如 2016年我购买了域名 xxxx
-// 每个 repo 3 张截图，用上面这个示例展示，repo icon 使用各个项目的 favicon
-
-const Projects = [
-  {
-    name: "lovchun.com-next",
-    icon: projectLogo,
-    url: "https://www.lovchun.com/",
-  },
-  {
-    name: "TS 类型体操",
-    icon: projectLogo,
-    url: "https://tsch.lovchun.com/",
-  },
-  {
-    name: "geist-design",
-    icon: projectLogo,
-    url: "https://geist-design.lovchun.com/",
-  },
-  {
-    name: "create-app",
-    icon: projectLogo,
-    url: "https://create-app.lovchun.com/",
-  },
-  {
-    name: "release-viewer",
-    icon: projectLogo,
-    url: "https://release-viewer.lovchun.com/",
-  },
 ];
 
 export default makeScene2D(function* (view) {

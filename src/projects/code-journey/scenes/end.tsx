@@ -1,92 +1,51 @@
-import { makeScene2D, Rect, Txt, Img } from "@motion-canvas/2d";
-import { waitUntil } from "@motion-canvas/core";
+import { makeScene2D, Rect, Txt } from "@motion-canvas/2d";
+import { createRef, sequence, waitUntil } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
+import { appear } from "@/shared/utils";
 
 export default makeScene2D(function* (view) {
-  // 参与人员模拟数据
-  const teamMembers = [
-    "张三 - 项目负责人",
-    "李四 - 前端开发",
-    "王五 - 动画设计",
-    "赵六 - 音效制作",
-    "孙七 - 内容策划"
-  ];
+  const letters = ["C", "o", "d", "e", "S", "u", "g", "a", "r"];
+  const colors = ["#4285F4", "#FBBC05", "#EA4335", "#34A853"];
+
+  const contentReft = createRef<Rect>();
+  const txtRefs = Array.from({ length: letters.length }, () =>
+    createRef<Txt>()
+  );
 
   view.add(
     <Rect
       direction="column"
       layout
       alignItems="center"
-      justifyContent="space-around"
-			paddingTop={20}
-			paddingBottom={20}
+      justifyContent="center"
       width="100%"
       height="100%"
+      gap={40}
     >
       <Rect
-        width={600}
-        height={600}
-        fill="white"
-        stroke="#4A90E2"
-        lineWidth={6}
-        radius={600}
-        marginBottom={60}
-        alignItems="center"
-        justifyContent="center"
+        ref={contentReft}
         layout
-      >
-        <Img
-          src="/logo.png"
-          width={360}
-          height={360}
-        />
-      </Rect>
-
-      {/* "记得点赞哦"提示 - 头像下方 */}
-      <Rect
-        width={640}
-        height={140}
-        fill="#FFE600"
-        radius={50}
-        marginBottom={80}
-        alignItems="center"
-        justifyContent="center"
-        layout
-      >
-        <Txt
-          text="-记得点赞哦-"
-          fontSize={72}
-          fontWeight={700}
-          fill="black"
-          fontFamily="Arial, sans-serif"
-        />
-      </Rect>
-
-      {/* 参与人员列表 - 底部中央 */}
-      <Rect
-        direction="column"
-        layout
-        alignItems="center"
-        gap={24}
-      >
-        <Txt
-          text="制作团队"
-          {...TextStyles.subtitle}
-          fontSize={96}
-          fontWeight={700}
-        />
-        {teamMembers.map((member, index) => (
-          <Txt
-            key={`${index}`}
-            text={member}
-            {...TextStyles.body}
-            fontSize={72}
-            fill="#ffffff"
-          />
-        ))}
-      </Rect>
+        alignItems={"start"}
+        justifyContent={"center"}
+      ></Rect>
     </Rect>
   );
+
+  txtRefs.forEach((ref, i) => {
+    contentReft().add(
+      <Txt
+        ref={ref}
+        {...TextStyles.title}
+        fontSize={120}
+        fill={colors[i] || "#fff"}
+        opacity={0}
+      >
+        {letters[i]}
+      </Txt>
+    );
+  });
+
+  yield* sequence(0.1, ...txtRefs.map((ref) => appear(ref())));
 
   yield* waitUntil("end");
 });

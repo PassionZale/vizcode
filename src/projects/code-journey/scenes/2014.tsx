@@ -108,30 +108,30 @@ export default makeScene2D(function* (view) {
 
   yield* codeRef().code("// 👋 HelloWorld", 0.6);
 
-  yield* codeRef().code(
-    `\
-// 👋 HelloWorld
-class HelloWorld {}`,
-    0.6
-  );
+//   yield* codeRef().code(
+//     `\
+// // 👋 HelloWorld
+// class HelloWorld {}`,
+//     0.6
+//   );
 
   yield* codeRef().code(
     `\
 // 👋 HelloWorld
 class HelloWorld {
 
-}`,
-    0.6
-  );
-
-  yield* codeRef().code(
-    `\
-// 👋 HelloWorld
-class HelloWorld {
-    public static void main(String[] args) {}
 }`,
     1
   );
+
+//   yield* codeRef().code(
+//     `\
+// // 👋 HelloWorld
+// class HelloWorld {
+//     public static void main(String[] args) {}
+// }`,
+//     1
+//   );
 
   yield* codeRef().code(
     `\
@@ -141,7 +141,7 @@ class HelloWorld {
 
     }
 }`,
-    0.6
+    1
   );
 
   yield* codeRef().code(

@@ -147,6 +147,9 @@ export default makeScene2D(function* (view) {
     )
   );
 
+	// video 自己录制一个喊 “PHP” 是世界上最好的语言
+	// video.play() 之后将 PHP 移动到中间扩大
+
   yield skillRef().add(
     <Video ref={videoRef} src={clapWebm} scale={0} size={200} loop />
   );

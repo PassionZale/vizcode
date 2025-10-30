@@ -17,18 +17,19 @@ export default makeScene2D(function* (view) {
       direction="column"
       layout
       alignItems="center"
-      justifyContent="center"
+      justifyContent="space-around"
+			paddingTop={20}
+			paddingBottom={20}
       width="100%"
       height="100%"
     >
-      {/* 头像区域 - 顶部中央 */}
       <Rect
-        width={400}
-        height={400}
+        width={600}
+        height={600}
         fill="white"
         stroke="#4A90E2"
         lineWidth={6}
-        radius={24}
+        radius={600}
         marginBottom={60}
         alignItems="center"
         justifyContent="center"

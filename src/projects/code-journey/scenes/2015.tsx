@@ -45,7 +45,7 @@ export default makeScene2D(function* (view) {
           <Spline
             ref={lineRef}
             lineWidth={6}
-            stroke={"lightseagreen"}
+            stroke={"white"}
             points={[
               [-230, -320],
               [160, -72],

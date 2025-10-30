@@ -3,7 +3,7 @@ import begin from "./scenes/begin?scene";
 import scene_2014 from "./scenes/2014?scene";
 import scene_2015 from "./scenes/2015?scene";
 import scene_2016_2023 from "./scenes/2016_2023?scene";
-import repo_list from "./scenes/repo_list?scene";
+import repos from "./scenes/repos?scene";
 import repo_blog from "./scenes/repo_blog?scene";
 import repo_tsch from "./scenes/repo_tsch?scene";
 import repo_geist_design from "./scenes/repo_geist_design?scene";
@@ -17,7 +17,7 @@ export default makeProject({
     scene_2014,
     scene_2015,
     scene_2016_2023,
-    repo_list,
+    repos,
     repo_blog,
     repo_tsch,
     repo_geist_design,

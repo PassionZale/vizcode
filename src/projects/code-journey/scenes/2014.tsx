@@ -1,5 +1,5 @@
 import { Circle, Code, Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { all, createRef, waitUntil } from "@motion-canvas/core";
+import { all, createRef, waitFor, waitUntil } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
 import { JavaCode } from "@/nodes/Code";
 import logoSvg from "../assets/logo.svg";
@@ -74,7 +74,8 @@ export default makeScene2D(function* (view) {
 
   yield* all(titleRef().text("2014", 0.5), imageRef().scale(1, 0.5));
 
-  yield* waitUntil("img_end");
+	yield* waitFor(1)
+  // yield* waitUntil("img_end");
 
   yield* imageRef().scale(0, 0.5);
 
@@ -108,13 +109,6 @@ export default makeScene2D(function* (view) {
 
   yield* codeRef().code("// 👋 HelloWorld", 0.6);
 
-//   yield* codeRef().code(
-//     `\
-// // 👋 HelloWorld
-// class HelloWorld {}`,
-//     0.6
-//   );
-
   yield* codeRef().code(
     `\
 // 👋 HelloWorld
@@ -123,15 +117,6 @@ class HelloWorld {
 }`,
     1
   );
-
-//   yield* codeRef().code(
-//     `\
-// // 👋 HelloWorld
-// class HelloWorld {
-//     public static void main(String[] args) {}
-// }`,
-//     1
-//   );
 
   yield* codeRef().code(
     `\
@@ -170,5 +155,6 @@ class HelloWorld {
     1
   );
 
-  yield* waitUntil("2014_end");
+  yield* waitFor(1);
+  // yield* waitUntil("2014_end");
 });

@@ -7,7 +7,13 @@ import {
   Latex,
   RectProps,
 } from "@motion-canvas/2d";
-import { all, createRef, sequence, waitUntil } from "@motion-canvas/core";
+import {
+  all,
+  createRef,
+  sequence,
+  waitFor,
+  waitUntil,
+} from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
 import logoSvg from "../assets/logo.svg";
 import slidevSvg from "../assets/slidev.svg";
@@ -183,5 +189,6 @@ export default makeScene2D(function* (view) {
 
   yield* sequence(0.15, ...repoRefs.map((ref) => appear(ref())));
 
-  yield* waitUntil("repo_list_end");
+  yield* waitFor(1);
+  // yield* waitUntil("repo_list_end");
 });

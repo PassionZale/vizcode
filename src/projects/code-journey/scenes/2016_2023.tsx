@@ -12,6 +12,7 @@ import { TextStyles } from "@/shared/text-styles";
 import logoSvg from "../assets/logo.svg";
 import slidevSvg from "../assets/slidev.svg";
 import clapWebm from "../assets/clap.webm";
+import mindWebm from "../assets/mind.webm";
 
 const ICONS = [
   "skill-icons:ubuntu-light",
@@ -147,18 +148,17 @@ export default makeScene2D(function* (view) {
     )
   );
 
-	// video 自己录制一个喊 “PHP” 是世界上最好的语言
-	// video.play() 之后将 PHP 移动到中间扩大
-
   yield skillRef().add(
-    <Video ref={videoRef} src={clapWebm} scale={0} size={200} loop />
+    <Video ref={videoRef} src={mindWebm} scale={0} size={200} />
   );
 
   videoRef().play();
 
-  yield* videoRef().scale(1, 1);
+  // mindWebm 2s
+  yield* videoRef().scale(1, 1).wait(1);
 
-  yield* waitUntil("skill_end");
+  // yield* waitUntil("skill_end");
 
-  yield* waitUntil("2016_2023_end");
+	yield* waitFor(2)
+  // yield* waitUntil("2016_2023_end");
 });

@@ -1,7 +1,8 @@
-import { makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { createRef, sequence, waitUntil } from "@motion-canvas/core";
+import { makeScene2D, Rect, Txt, Video } from "@motion-canvas/2d";
+import { createRef, sequence, waitFor, waitUntil } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
 import { appear } from "@/shared/utils";
+import partingFaceWebm from "@/assets/videos/parting-face.webm";
 
 export default makeScene2D(function* (view) {
   const letters = ["C", "o", "d", "e", "S", "u", "g", "a", "r"];
@@ -12,6 +13,8 @@ export default makeScene2D(function* (view) {
     createRef<Txt>()
   );
 
+  const videoRef = createRef<Video>();
+
   view.add(
     <Rect
       direction="column"
@@ -20,8 +23,9 @@ export default makeScene2D(function* (view) {
       justifyContent="center"
       width="100%"
       height="100%"
-      gap={40}
+      gap={60}
     >
+      <Video ref={videoRef} src={partingFaceWebm} size={300} />
       <Rect
         ref={contentReft}
         layout
@@ -45,7 +49,10 @@ export default makeScene2D(function* (view) {
     );
   });
 
+  videoRef().play();
+
   yield* sequence(0.1, ...txtRefs.map((ref) => appear(ref())));
 
-  yield* waitUntil("end");
+	yield* waitFor(1)
+  // yield* waitUntil("end");
 });

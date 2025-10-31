@@ -203,5 +203,6 @@ export default makeScene2D(function* (view) {
 
   yield* waitFor(1);
 
-  yield* waitUntil("2015_end");
+	yield* waitFor(1);
+  // yield* waitUntil("2015_end");
 });

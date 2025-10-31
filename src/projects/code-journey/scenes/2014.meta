@@ -1,14 +1,5 @@
 {
   "version": 0,
-  "timeEvents": [
-    {
-      "name": "img_end",
-      "targetTime": 9.212513206631552
-    },
-    {
-      "name": "2014_end",
-      "targetTime": 20.529971697654908
-    }
-  ],
+  "timeEvents": [],
   "seed": 3339456071
 }

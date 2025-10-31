@@ -1,14 +1,5 @@
 {
   "version": 0,
-  "timeEvents": [
-    {
-      "name": "skill_end",
-      "targetTime": 7.216984215632993
-    },
-    {
-      "name": "2016_2023_end",
-      "targetTime": 13.149533205294166
-    }
-  ],
+  "timeEvents": [],
   "seed": 1868478592
 }

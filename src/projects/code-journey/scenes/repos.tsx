@@ -162,7 +162,6 @@ export default makeScene2D(function* (view) {
         justifyContent={"space-around"}
       >
         <Rect layout gap={20} direction={"row"} alignItems={"center"}>
-          {/* <Icon icon="iconoir:repository" size={60} /> */}
           {REPOS[i].icon ? (
             <Icon icon={REPOS[i].icon} size={60} />
           ) : (

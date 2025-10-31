@@ -6,8 +6,8 @@ import {
   Rect,
   Txt,
   Path,
-  Icon,
   RectProps,
+  Video,
 } from "@motion-canvas/2d";
 import {
   all,
@@ -18,17 +18,22 @@ import {
   waitUntil,
 } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
-import logoSvg from "../assets/logo.svg";
 import { appear } from "@/shared/utils";
+import logoSvg from "../assets/logo.svg";
+import targetWebm from "../assets/target.webm";
 
 const LOCATIONS = [
   {
     city: "武汉",
-    position: [-230, -320] as RectProps["position"],
+    rectPosition: [-230, -320] as RectProps["position"],
+    flagWebm: targetWebm,
+    flagPosition: [-230, -320] as RectProps["position"],
   },
   {
     city: "深圳",
-    position: [230, 330] as RectProps["position"],
+    rectPosition: [310, 280] as RectProps["position"],
+    flagWebm: targetWebm,
+    flagPosition: [310, 300] as RectProps["position"],
   },
 ];
 
@@ -42,6 +47,10 @@ export default makeScene2D(function* (view) {
 
   const locationRefs = Array.from({ length: LOCATIONS.length }, () =>
     createRef<Rect>()
+  );
+
+  const flagRefs = Array.from({ length: LOCATIONS.length }, () =>
+    createRef<Video>()
   );
 
   view.add(
@@ -81,18 +90,7 @@ export default makeScene2D(function* (view) {
             start={0}
             end={0}
           />
-          <Spline
-            ref={lineRef}
-            lineWidth={6}
-            stroke={"white"}
-            points={[
-              [-230, -320],
-              [160, -72],
-              [-160, 90],
-              [230, 330],
-            ]}
-            end={0}
-          />
+
           <Path
             ref={guangdongRef}
             lineWidth={4}
@@ -101,6 +99,19 @@ export default makeScene2D(function* (view) {
             scale={0.4}
             position={[70, 100]}
             start={0}
+            end={0}
+          />
+
+          <Spline
+            ref={lineRef}
+            lineWidth={10}
+            stroke={"#00bcff"}
+            points={[
+              [-230, -320],
+              [160, -72],
+              [-160, 90],
+              [310, 300],
+            ]}
             end={0}
           />
         </Rect>
@@ -134,17 +145,31 @@ export default makeScene2D(function* (view) {
     </Rect>
   );
 
+  locationRefs.map((ref, i) => {
+    contentRef().add(
+      <Rect ref={ref} position={LOCATIONS[i].rectPosition} opacity={0}>
+        <Txt>{LOCATIONS[i].city}</Txt>
+      </Rect>
+    );
+  });
+
+  flagRefs.map((ref, i) => {
+    contentRef().add(
+      <Video
+        ref={ref}
+        src={LOCATIONS[i].flagWebm}
+        size={100}
+        position={LOCATIONS[i].flagPosition}
+        opacity={0}
+      />
+    );
+  });
+
   yield* all(
     titleRef().text("2015", 1),
     gridRef().start(0.5, 1).to(0, 1),
     gridRef().end(0.5, 1).to(1, 1)
   );
-
-  yield* hubeiRef().end(1, 1);
-  yield* hubeiRef().fill("#f2ebbf", 1);
-
-  yield* guangdongRef().end(1, 1);
-  yield* guangdongRef().fill("#efdfec", 1);
 
   yield* chain(
     hubeiRef().end(1, 1),
@@ -153,36 +178,30 @@ export default makeScene2D(function* (view) {
     guangdongRef().fill("#efdfec", 1)
   );
 
-  locationRefs.map((ref, i) => {
-    contentRef().add(
-      <>
-        <Rect
-          ref={ref}
-          opacity={0}
-          layout
-					width={200}
-					direction={'column'}
-					alignItems={'center'}
-					justifyContent={'space-around'}
-					gap={20}
-					scale={1}
-          position={LOCATIONS[i].position}
-        >
-					<Rect>
-	          <Txt>{LOCATIONS[i].city}</Txt>
-					</Rect>
+  yield* sequence(0.15, ...locationRefs.map((ref) => appear(ref(), 0.5)));
 
-          <Icon size={40} fill={'blue'} icon="material-symbols:pin-drop-outline" />
-        </Rect>
-      </>
-    );
-  });
+  yield* waitFor(1);
 
-  yield* sequence(0.15, ...locationRefs.map((ref) => appear(ref())));
+  yield* all(
+    locationRefs[0]().left(locationRefs[0]().left().addX(-100), 0.5),
+    appear(flagRefs[0](), 0.5)
+  );
 
-  yield* waitFor(3);
+  flagRefs[0]().play();
 
-  yield* all(gridRef().start(0.5, 1).to(0, 1), gridRef().end(0.5, 1).to(0, 1));
+  yield* waitFor(1);
+
+  yield* chain(
+    lineRef().end(1, 1.5),
+    all(
+      locationRefs[1]().top(locationRefs[1]().top().addY(-50), 0.5),
+      appear(flagRefs[1](), 0.5)
+    )
+  );
+
+  flagRefs[1]().play();
+
+  yield* waitFor(1);
 
   yield* waitUntil("2015_end");
 });

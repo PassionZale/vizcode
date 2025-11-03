@@ -149,16 +149,15 @@ export default makeScene2D(function* (view) {
   );
 
   yield skillRef().add(
-    <Video ref={videoRef} src={mindWebm} scale={0} size={200} />
+    <Video ref={videoRef} src={mindWebm} scale={0} size={200} loop/>
   );
 
   videoRef().play();
 
   // mindWebm 2s
-  yield* videoRef().scale(1, 1).wait(1);
+  yield* videoRef().scale(1, 1);
 
   // yield* waitUntil("skill_end");
 
-	yield* waitFor(2)
-  // yield* waitUntil("2016_2023_end");
+  yield* waitUntil("2016_2023_end");
 });

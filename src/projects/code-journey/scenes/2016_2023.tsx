@@ -11,8 +11,7 @@ import { all, createRef, waitFor, waitUntil } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
 import logoSvg from "../assets/logo.svg";
 import slidevSvg from "../assets/slidev.svg";
-import clapWebm from "../assets/clap.webm";
-import mindWebm from "../assets/mind.webm";
+import partyPopper from "@/assets/videos/party-popper.webm"
 
 const ICONS = [
   "skill-icons:ubuntu-light",
@@ -149,15 +148,12 @@ export default makeScene2D(function* (view) {
   );
 
   yield skillRef().add(
-    <Video ref={videoRef} src={mindWebm} scale={0} size={200} loop/>
+    <Video ref={videoRef} src={partyPopper} scale={0} size={200} loop/>
   );
 
   videoRef().play();
 
-  // mindWebm 2s
   yield* videoRef().scale(1, 1);
-
-  // yield* waitUntil("skill_end");
 
   yield* waitUntil("2016_2023_end");
 });

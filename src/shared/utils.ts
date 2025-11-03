@@ -9,3 +9,12 @@ export function* appear(object: Shape, duration = 1): ThreadGenerator {
     object.opacity(0).opacity(1, duration)
   );
 }
+
+export function* disappear(object: Shape, duration = 1): ThreadGenerator {
+  let scale = object.scale();
+
+  yield* all(
+    object.scale(scale).scale(0, duration),
+    object.opacity(1).opacity(0, duration)
+  );
+}

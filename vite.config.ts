@@ -7,7 +7,8 @@ export default defineConfig({
   plugins: [
     motionCanvas({
       project: [
-        "./src/projects/code-journey/index.ts",
+        "./src/projects/live/code-journey/index.ts",
+        "./src/projects/ai/llm-model-names/index.ts",
       ],
     }),
     ffmpeg(),

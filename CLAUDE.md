@@ -48,6 +48,7 @@ Each project follows this pattern:
 - Core: Motion Canvas 2D, Core, and FFmpeg for video export
 - UI: CodeMirror themes for code display
 - Development: Vite, TypeScript, Motion Canvas UI and Vite plugin
+- Test: 除非有明确要求，否则不需要检查开发服务器是否正常
 
 ## Development Guidelines
 

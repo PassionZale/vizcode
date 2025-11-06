@@ -2,14 +2,12 @@ import path from "node:path";
 import { defineConfig } from "vite";
 import motionCanvas from "@motion-canvas/vite-plugin";
 import ffmpeg from "@motion-canvas/ffmpeg";
+import { discoverProjects } from "./scripts/discover-projects";
 
 export default defineConfig({
   plugins: [
     motionCanvas({
-      project: [
-        "./src/projects/live/code-journey/index.ts",
-        "./src/projects/ai/llm-model-names/index.ts",
-      ],
+      project: discoverProjects(),
     }),
     ffmpeg(),
   ],

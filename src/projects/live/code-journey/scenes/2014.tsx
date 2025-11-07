@@ -85,7 +85,7 @@ export default makeScene2D(function* (view) {
     .alignItems("start")
     .justifyContent("start")
     .add(
-      <Rect size={"100%"} paddingLeft={40} paddingRight={40}>
+      <Rect size={"100%"} paddingLeft={80} paddingRight={80}>
         <Rect
           layout
           clip

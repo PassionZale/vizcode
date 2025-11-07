@@ -60,3 +60,4 @@ Each project follows this pattern:
 - 除非有明确要求，否则不要编写兼容性代码
 - 优先考虑现代浏览器和最新标准
 - 避免不必要的 polyfill 和向后兼容处理
+- 如果需要搜索 motion-canvas 相关的文档, 优先使用 context7

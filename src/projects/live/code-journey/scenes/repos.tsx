@@ -7,7 +7,7 @@ import {
   Latex,
   RectProps,
 } from "@motion-canvas/2d";
-import { all, createRef, sequence, waitFor } from "@motion-canvas/core";
+import { all, createRef, sequence } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
 import logoSvg from "../assets/logo.svg";
 import slidevSvg from "../assets/slidev.svg";

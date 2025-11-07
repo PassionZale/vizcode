@@ -1,5 +1,5 @@
 import { Shape } from "@motion-canvas/2d";
-import { all, ThreadGenerator } from "@motion-canvas/core";
+import { all, ThreadGenerator, waitFor } from "@motion-canvas/core";
 
 /**
  * 元素淡入动画效果
@@ -61,4 +61,34 @@ export function* disappear(object: Shape, duration = 1): ThreadGenerator {
     object.scale(scale).scale(0, duration),
     object.opacity(1).opacity(0, duration)
   );
+}
+
+/**
+ * 等待指定时间间隔的工具函数
+ *
+ * 提供一个简单的方法来暂停动画执行，常用于在动画序列中创建停顿
+ * 或延迟下一个动作的开始。
+ *
+ * @param seconds - 等待的时间（秒），默认为5秒
+ * @returns ThreadGenerator - Motion Canvas动画生成器
+ *
+ * @example
+ * ```typescript
+ * // 使用默认5秒等待
+ * yield* waitForCut();
+ *
+ * // 等待1秒
+ * yield* waitForCut(1);
+ *
+ * // 等待0.5秒
+ * yield* waitForCut(0.5);
+ *
+ * // 在动画序列中使用
+ * yield* appear(element, 0.8);
+ * yield* waitForCut(2);
+ * yield* disappear(element, 0.6);
+ * ```
+ */
+export function* waitForCut(seconds = 5): ThreadGenerator {
+  yield* waitFor(seconds);
 }

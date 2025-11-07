@@ -1,9 +1,10 @@
 import { Circle, Code, Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { all, createRef, waitFor, waitUntil } from "@motion-canvas/core";
+import { all, createRef } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
 import { JavaCode } from "@/nodes/Code";
 import logoSvg from "../assets/logo.svg";
 import imgJpg from "../assets/2014.jpg";
+import { waitForCut } from "@/shared/utils";
 
 export default makeScene2D(function* (view) {
   const titleRef = createRef<Txt>();
@@ -74,8 +75,7 @@ export default makeScene2D(function* (view) {
 
   yield* all(titleRef().text("2014", 0.5), imageRef().scale(1, 0.5));
 
-	yield* waitFor(1)
-  // yield* waitUntil("img_end");
+  yield* waitForCut();
 
   yield* imageRef().scale(0, 0.5);
 
@@ -155,6 +155,5 @@ class HelloWorld {
     1
   );
 
-  yield* waitFor(1);
-  // yield* waitUntil("2014_end");
+  yield* waitForCut();
 });

@@ -7,12 +7,12 @@ import {
   Txt,
   Video,
 } from "@motion-canvas/2d";
-import { all, createRef, waitFor, waitUntil } from "@motion-canvas/core";
+import { all, createRef, waitFor } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
 import logoSvg from "../assets/logo.svg";
 import slidevSvg from "../assets/slidev.svg";
 import partyPopper from "@/assets/videos/party-popper.webm";
-import { appear } from "@/shared/utils";
+import { appear, waitForCut } from "@/shared/utils";
 
 const ICONS = [
   "skill-icons:ubuntu-light",
@@ -156,5 +156,5 @@ export default makeScene2D(function* (view) {
 
   videoRef().play();
 
-  yield* waitUntil("2016_2023_end");
+  yield* waitForCut();
 });

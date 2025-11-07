@@ -9,16 +9,9 @@ import {
   RectProps,
   Video,
 } from "@motion-canvas/2d";
-import {
-  all,
-  chain,
-  createRef,
-  sequence,
-  waitFor,
-  waitUntil,
-} from "@motion-canvas/core";
+import { all, chain, createRef, sequence, waitFor } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
-import { appear } from "@/shared/utils";
+import { appear, waitForCut } from "@/shared/utils";
 import logoSvg from "../assets/logo.svg";
 import targetWebm from "../assets/target.webm";
 
@@ -201,8 +194,5 @@ export default makeScene2D(function* (view) {
 
   flagRefs[1]().play();
 
-  yield* waitFor(1);
-
-	yield* waitFor(1);
-  // yield* waitUntil("2015_end");
+  yield* waitForCut();
 });

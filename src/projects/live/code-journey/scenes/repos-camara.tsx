@@ -146,60 +146,58 @@ export default makeScene2D(function* (view) {
     </Rect>
   );
 
-  yield* waitForCut(1);
-
   yield* all(
-    cameraRef().centerOn(rectRefs[1](), 0.5),
-    rectRefs[1]().scale(1.2, 0.5),
+    cameraRef().centerOn(rectRefs[1](), 1.2),
+    rectRefs[1]().scale(1.2, 1),
     rectRefs[1]().stroke("#FBBC05", 1)
   );
-  yield* waitForCut(1);
+  yield* waitForCut();
 
   yield* all(
     rectRefs[1]().stroke("#666", 1),
     rectRefs[1]().scale(0.8, 0.5),
-    cameraRef().centerOn(rectRefs[2](), 0.5),
-    rectRefs[2]().scale(1.2, 0.5),
+    cameraRef().centerOn(rectRefs[2](), 1.2),
+    rectRefs[2]().scale(1.2, 1),
     rectRefs[2]().stroke("#FBBC05", 1)
   );
 
-  yield* waitForCut(1);
+  yield* waitForCut();
 
   yield* all(
     rectRefs[2]().stroke("#666", 1),
     rectRefs[2]().scale(0.8, 0.5),
-    cameraRef().centerOn(rectRefs[3](), 0.5),
-    rectRefs[3]().scale(1.2, 0.5),
+    cameraRef().centerOn(rectRefs[3](), 1.2),
+    rectRefs[3]().scale(1.2, 1),
     rectRefs[3]().stroke("#FBBC05", 1)
   );
 
-  yield* waitForCut(1);
+  yield* waitForCut();
 
   yield* all(
     rectRefs[3]().stroke("#666", 1),
     rectRefs[3]().scale(0.8, 0.5),
-    cameraRef().centerOn(rectRefs[4](), 0.5),
-    rectRefs[4]().scale(1.2, 0.5),
+    cameraRef().centerOn(rectRefs[4](), 1.2),
+    rectRefs[4]().scale(1.2, 1),
     rectRefs[4]().stroke("#FBBC05", 1)
   );
 
-  yield* waitForCut(1);
+  yield* waitForCut();
 
   yield* all(
     rectRefs[4]().stroke("#666", 1),
     rectRefs[4]().scale(0.8, 0.5),
-    cameraRef().centerOn(rectRefs[5](), 0.5),
-    rectRefs[5]().scale(1.2, 0.5),
+    cameraRef().centerOn(rectRefs[5](), 1.2),
+    rectRefs[5]().scale(1.2, 1),
     rectRefs[5]().stroke("#FBBC05", 1)
   );
 
-  yield* waitForCut(1);
+  yield* waitForCut();
 
   yield* all(
     rectRefs[5]().stroke("#666", 1),
     rectRefs[5]().scale(0.8, 0.5),
-    cameraRef().centerOn(rectRefs[6](), 0.5),
-    rectRefs[6]().scale(1.2, 0.5),
+    cameraRef().centerOn(rectRefs[6](), 1.2),
+    rectRefs[6]().scale(1.2, 1),
     rectRefs[6]().stroke("#FBBC05", 1)
   );
 

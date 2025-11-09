@@ -1,5 +1,5 @@
 import { Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { chain, createRef, sequence } from "@motion-canvas/core";
+import { chain, createRef } from "@motion-canvas/core";
 import logoSvg from "../assets/logo.svg";
 import { TextStyles } from "@/shared/text-styles";
 import { waitForCut } from "@/shared/utils";

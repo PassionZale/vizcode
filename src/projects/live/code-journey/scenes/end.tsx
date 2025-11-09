@@ -51,7 +51,7 @@ export default makeScene2D(function* (view) {
 
   videoRef().play();
 
-  yield* sequence(0.1, ...txtRefs.map((ref) => appear(ref())));
+  yield* sequence(0.1, ...txtRefs.map((ref) => appear(ref(), 0.8)));
 
-  yield* waitForCut();
+  yield* waitForCut(1);
 });

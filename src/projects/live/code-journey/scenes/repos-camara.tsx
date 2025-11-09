@@ -14,6 +14,7 @@ import slidevSvg from "../assets/slidev.svg";
 import { waitForCut } from "@/shared/utils";
 
 const REPOS = [
+  {},
   {
     title: "lovchun.com",
     icon: "skill-icons:astro",
@@ -94,7 +95,7 @@ export default makeScene2D(function* (view) {
               direction={"column"}
               alignItems={"start"}
               justifyContent={"space-around"}
-              stroke={"#666"}
+              stroke={i === 0 ? undefined : "#666"}
               lineWidth={2}
               radius={20}
               gap={40}
@@ -145,18 +146,13 @@ export default makeScene2D(function* (view) {
     </Rect>
   );
 
-  yield* rectRefs[0]().stroke("#FBBC05", 1);
-
   yield* waitForCut(1);
 
   yield* all(
-    rectRefs[0]().stroke("#666", 1),
-    rectRefs[0]().scale(0.8, 0.5),
     cameraRef().centerOn(rectRefs[1](), 0.5),
     rectRefs[1]().scale(1.2, 0.5),
     rectRefs[1]().stroke("#FBBC05", 1)
   );
-
   yield* waitForCut(1);
 
   yield* all(
@@ -195,6 +191,16 @@ export default makeScene2D(function* (view) {
     cameraRef().centerOn(rectRefs[5](), 0.5),
     rectRefs[5]().scale(1.2, 0.5),
     rectRefs[5]().stroke("#FBBC05", 1)
+  );
+
+  yield* waitForCut(1);
+
+  yield* all(
+    rectRefs[5]().stroke("#666", 1),
+    rectRefs[5]().scale(0.8, 0.5),
+    cameraRef().centerOn(rectRefs[6](), 0.5),
+    rectRefs[6]().scale(1.2, 0.5),
+    rectRefs[6]().stroke("#FBBC05", 1)
   );
 
   yield* waitForCut();

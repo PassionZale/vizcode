@@ -1,7 +1,7 @@
 import { makeScene2D, Rect, Txt, Video } from "@motion-canvas/2d";
-import { createRef, sequence, waitFor, waitUntil } from "@motion-canvas/core";
+import { createRef, sequence } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
-import { appear } from "@/shared/utils";
+import { appear, waitForCut } from "@/shared/utils";
 import partingFaceWebm from "@/assets/videos/parting-face.webm";
 
 export default makeScene2D(function* (view) {
@@ -51,8 +51,7 @@ export default makeScene2D(function* (view) {
 
   videoRef().play();
 
-  yield* sequence(0.1, ...txtRefs.map((ref) => appear(ref())));
+  yield* sequence(0.1, ...txtRefs.map((ref) => appear(ref(), 0.8)));
 
-	yield* waitFor(1)
-  // yield* waitUntil("end");
+  yield* waitForCut(1);
 });

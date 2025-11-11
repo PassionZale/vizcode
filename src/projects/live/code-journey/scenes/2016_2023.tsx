@@ -12,7 +12,7 @@ import { TextStyles } from "@/shared/text-styles";
 import logoSvg from "../assets/logo.svg";
 import slidevSvg from "../assets/slidev.svg";
 import partyPopper from "@/assets/videos/party-popper.webm";
-import { appear } from "@/shared/utils";
+import { appear, disappear } from "@/shared/utils";
 
 const ICONS = [
   "skill-icons:ubuntu-light",
@@ -156,5 +156,9 @@ export default makeScene2D(function* (view) {
 
   videoRef().play();
 
-  yield* waitUntil("2016_2023_end");
+  yield* waitFor(2);
+
+  yield* disappear(videoRef());
+
+  yield* waitUntil("2016_2023");
 });

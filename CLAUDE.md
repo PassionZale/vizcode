@@ -48,6 +48,7 @@ Each project follows this pattern:
 - Core: Motion Canvas 2D, Core, and FFmpeg for video export
 - UI: CodeMirror themes for code display
 - Development: Vite, TypeScript, Motion Canvas UI and Vite plugin
+- Test: 除非有明确要求，否则不需要检查开发服务器是否正常
 
 ## Development Guidelines
 
@@ -59,3 +60,4 @@ Each project follows this pattern:
 - 除非有明确要求，否则不要编写兼容性代码
 - 优先考虑现代浏览器和最新标准
 - 避免不必要的 polyfill 和向后兼容处理
+- 如果需要搜索 motion-canvas 相关的文档, 优先使用 context7

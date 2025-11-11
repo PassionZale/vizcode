@@ -1,8 +1,7 @@
 import { Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { chain, createRef } from "@motion-canvas/core";
+import { chain, createRef, waitUntil } from "@motion-canvas/core";
 import logoSvg from "../assets/logo.svg";
 import { TextStyles } from "@/shared/text-styles";
-import { waitForCut } from "@/shared/utils";
 
 export default makeScene2D(function* (view) {
   const titleRef = createRef<Txt>();
@@ -79,5 +78,5 @@ export default makeScene2D(function* (view) {
     txtRefs[3]().text("但是编程却改变了我的生活。", 1)
   );
 
-  yield* waitForCut();
+  yield* waitUntil('begin')
 });

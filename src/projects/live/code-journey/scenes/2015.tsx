@@ -9,9 +9,9 @@ import {
   RectProps,
   Video,
 } from "@motion-canvas/2d";
-import { all, chain, createRef, sequence, waitFor } from "@motion-canvas/core";
+import { all, chain, createRef, sequence, waitFor, waitUntil } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
-import { appear, waitForCut } from "@/shared/utils";
+import { appear } from "@/shared/utils";
 import logoSvg from "../assets/logo.svg";
 import targetWebm from "../assets/target.webm";
 
@@ -163,20 +163,20 @@ export default makeScene2D(function* (view) {
 
   yield* all(
     titleRef().text("2015", 1),
-    gridRef().start(0.5, 1).to(0, 1),
-    gridRef().end(0.5, 1).to(1, 1)
+    gridRef().start(0.5, 1).to(0, 0.5),
+    gridRef().end(0.5, 1).to(1, 0.5)
   );
 
   yield* chain(
-    hubeiRef().end(1, 1),
-    hubeiRef().fill("#f2ebbf", 1),
-    guangdongRef().end(1, 1),
-    guangdongRef().fill("#efdfec", 1)
+    hubeiRef().end(1, 0.5),
+    hubeiRef().fill("#f2ebbf", 0.5),
+    guangdongRef().end(1, 0.5),
+    guangdongRef().fill("#efdfec", 0.5)
   );
 
   yield* sequence(0.25, ...locationRefs.map((ref) => appear(ref(), 0.5)));
 
-  yield* waitFor(1);
+  yield* waitFor(0.5);
 
   yield* all(
     locationRefs[0]().position([-200, -380], 0.5),
@@ -185,14 +185,14 @@ export default makeScene2D(function* (view) {
 
   flagRefs[0]().play();
 
-  yield* waitFor(1);
+  yield* waitFor(0.5);
 
   yield* chain(
-    lineRef().end(1, 1.5),
+    lineRef().end(1, 0.5),
     all(locationRefs[1]().position([30, 290], 0.5), appear(flagRefs[1](), 0.5))
   );
 
   flagRefs[1]().play();
 
-  yield* waitForCut();
+  yield* waitUntil('2015');
 });

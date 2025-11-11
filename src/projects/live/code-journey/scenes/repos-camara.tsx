@@ -7,7 +7,7 @@ import {
   Latex,
   Camera,
 } from "@motion-canvas/2d";
-import { all, createRef } from "@motion-canvas/core";
+import { all, createRef, waitUntil } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
 import logoSvg from "../assets/logo.svg";
 import slidevSvg from "../assets/slidev.svg";
@@ -151,7 +151,8 @@ export default makeScene2D(function* (view) {
     rectRefs[1]().scale(1.2, 1),
     rectRefs[1]().stroke("#FBBC05", 1)
   );
-  yield* waitForCut();
+
+  yield* waitUntil("repo-start");
 
   yield* all(
     rectRefs[1]().stroke("#666", 1),
@@ -161,7 +162,7 @@ export default makeScene2D(function* (view) {
     rectRefs[2]().stroke("#FBBC05", 1)
   );
 
-  yield* waitForCut();
+	yield* waitForCut(0.8)
 
   yield* all(
     rectRefs[2]().stroke("#666", 1),
@@ -171,7 +172,7 @@ export default makeScene2D(function* (view) {
     rectRefs[3]().stroke("#FBBC05", 1)
   );
 
-  yield* waitForCut();
+	yield* waitForCut(0.8)
 
   yield* all(
     rectRefs[3]().stroke("#666", 1),
@@ -181,7 +182,7 @@ export default makeScene2D(function* (view) {
     rectRefs[4]().stroke("#FBBC05", 1)
   );
 
-  yield* waitForCut();
+	yield* waitForCut(0.8)
 
   yield* all(
     rectRefs[4]().stroke("#666", 1),
@@ -191,7 +192,7 @@ export default makeScene2D(function* (view) {
     rectRefs[5]().stroke("#FBBC05", 1)
   );
 
-  yield* waitForCut();
+	yield* waitForCut(0.8)
 
   yield* all(
     rectRefs[5]().stroke("#666", 1),
@@ -201,5 +202,5 @@ export default makeScene2D(function* (view) {
     rectRefs[6]().stroke("#FBBC05", 1)
   );
 
-  yield* waitForCut();
+	yield* waitUntil('repo-camare')
 });

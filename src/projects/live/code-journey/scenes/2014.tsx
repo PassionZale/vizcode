@@ -1,5 +1,5 @@
 import { Circle, Code, Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { all, createRef } from "@motion-canvas/core";
+import { all, createRef, waitUntil } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
 import { JavaCode } from "@/nodes/Code";
 import logoSvg from "../assets/logo.svg";
@@ -155,5 +155,5 @@ class HelloWorld {
     1
   );
 
-  yield* waitForCut();
+  yield* waitUntil('2014');
 });

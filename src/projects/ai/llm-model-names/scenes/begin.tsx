@@ -5,7 +5,7 @@ import logoSvg from "../assets/logo.svg";
 
 export default makeScene2D(function* (view) {
   const openingScene = new OpeningScene({
-    title: "Code Journey",
+    title: "LLM model names",
     logoSrc: logoSvg,
     middleText: "A-rolling...",
     backgroundColor: "#121b21",

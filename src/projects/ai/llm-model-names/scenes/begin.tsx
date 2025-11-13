@@ -5,7 +5,7 @@ import { TextStyles } from "@/shared/text-styles";
 export default makeScene2D(function* (view) {
   const titleRef = createRef<Txt>();
   const contentRef = createRef<Rect>();
-  const txtRefs = Array.from({ length: 4 }, () => createRef<Txt>());
+  const txtRefs = Array.from({ length: 6 }, () => createRef<Txt>());
 
   yield view.add(
     <Rect layout size={["100%", "100%"]} fill={"#121b21"} direction={"column"}>

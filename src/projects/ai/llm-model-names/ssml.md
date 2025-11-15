@@ -45,9 +45,9 @@ DeepSeek 你肯定耳熟能详了
 					DeepSeek-R1-0528
 )
 
-那么 DeepSeek-V3-0324-Qwen2.5-7b-GGUF 和 DeepSeek-R1-Distill-Qwen-32B 你又该如何应对?
+那么 DeepSeek-V3-Base 和 DeepSeek-R1-Distill-Qwen-32B 你又该如何应对?
 (
-					DeepSeek-V3-0324-Qwen2.5-7b-GGUF
+					DeepSeek-V3-Base
 	Logo - 
 					DeepSeek-R1-Distill-Qwen-32B
 )

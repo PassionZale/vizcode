@@ -1,8 +1,8 @@
-import { Icon, Img, makeScene2D, Rect, Spline, Txt } from "@motion-canvas/2d";
-import { all, chain, createRef, waitUntil } from "@motion-canvas/core";
+import { Icon, Img, makeScene2D, Rect, Txt, word } from "@motion-canvas/2d";
+import { all, chain, createRef, DEFAULT, waitUntil } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
 import deepSeekColor from "../assets/deepseek-color.svg";
-import { appear } from "@/shared/utils";
+import { appear, disappear } from "@/shared/utils";
 import { Code } from "@motion-canvas/2d";
 import { JavascriptCode } from "@/nodes/Code";
 
@@ -11,8 +11,6 @@ export default makeScene2D(function* (view) {
   const contentRef = createRef<Rect>();
   const deepseekSvgRef = createRef<Img>();
   const deepseekCodeRef1 = createRef<Code>();
-
-  const lineRef = createRef<Spline>();
 
   yield view.add(
     <Rect layout size={["100%", "100%"]} fill={"#121b21"} direction={"column"}>
@@ -40,18 +38,6 @@ export default makeScene2D(function* (view) {
             scale={4}
             opacity={0}
             position={[0, 0]}
-          />
-
-          <Spline
-            ref={lineRef}
-            lineWidth={10}
-            stroke={"#00bcff"}
-            points={[
-              [-430, -50],
-              [-410, -75],
-              [-290, -75],
-            ]}
-            end={0}
           />
 
           <JavascriptCode
@@ -112,6 +98,14 @@ export default makeScene2D(function* (view) {
       deepseekSvgRef().left(deepseekSvgRef().left().addX(-80), 1),
       deepseekCodeRef1().code("DeepSeek-V3", 1),
       deepseekCodeRef2.code("DeepSeek-R1", 1)
+    ),
+    all(
+      deepseekCodeRef1().selection(word(0, 9, 2), 1.5),
+      deepseekCodeRef2.selection(word(0, 9, 2), 1.5)
+    ),
+    all(
+      deepseekCodeRef1().selection(DEFAULT, 1),
+      deepseekCodeRef2.selection(DEFAULT, 1)
     )
   );
 
@@ -124,7 +118,31 @@ export default makeScene2D(function* (view) {
     deepseekCodeRef2.code("DeepSeek-R1-0528", 1)
   );
 
-  yield* lineRef().end(1, 0.5);
+  yield* chain(
+    all(
+      deepseekCodeRef1().selection(
+        deepseekCodeRef1().findFirstRange("0324"),
+        1.5
+      ),
+      deepseekCodeRef2.selection(deepseekCodeRef2.findFirstRange("0528"), 1.5)
+    ),
+    all(
+      deepseekCodeRef1().selection(DEFAULT, 1),
+      deepseekCodeRef2.selection(DEFAULT, 1)
+    )
+  );
+
+  yield* chain(
+    all(
+      disappear(deepseekSvgRef()),
+      deepseekCodeRef1().fontSize(60, 1),
+      deepseekCodeRef1().x(0, 1),
+      deepseekCodeRef1().code("DeepSeek-V3-Base", 1),
+      deepseekCodeRef2.fontSize(55, 1),
+      deepseekCodeRef2.x(0, 1),
+      deepseekCodeRef2.code("DeepSeek-R1-Distill-Qwen-32B", 1)
+    )
+  );
 
   yield* waitUntil("deepseek");
 });

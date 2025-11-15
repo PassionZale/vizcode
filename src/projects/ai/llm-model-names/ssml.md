@@ -28,7 +28,7 @@ Spark
  
 ---
 
-DeepSeek 你肯定知道它是什么了
+DeepSeek 你肯定耳熟能详了
 (Logo - DeepSeek)
 
 那么 DeepSeek-V3 和 DeepSeek-R1 呢?

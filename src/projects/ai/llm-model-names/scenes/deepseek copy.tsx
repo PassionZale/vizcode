@@ -1,4 +1,4 @@
-import { Icon, Img, makeScene2D, Rect, Spline, Txt } from "@motion-canvas/2d";
+import { Icon, Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
 import { all, chain, createRef, waitUntil } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
 import deepSeekColor from "../assets/deepseek-color.svg";
@@ -11,8 +11,6 @@ export default makeScene2D(function* (view) {
   const contentRef = createRef<Rect>();
   const deepseekSvgRef = createRef<Img>();
   const deepseekCodeRef1 = createRef<Code>();
-
-  const lineRef = createRef<Spline>();
 
   yield view.add(
     <Rect layout size={["100%", "100%"]} fill={"#121b21"} direction={"column"}>
@@ -42,22 +40,10 @@ export default makeScene2D(function* (view) {
             position={[0, 0]}
           />
 
-          <Spline
-            ref={lineRef}
-            lineWidth={10}
-            stroke={"#00bcff"}
-            points={[
-              [-430, -50],
-              [-410, -75],
-              [-290, -75],
-            ]}
-            end={0}
-          />
-
           <JavascriptCode
             ref={deepseekCodeRef1}
             code={"DeepSeek"}
-            fontSize={80}
+            fontSize={88}
             opacity={0}
             position={[40, 20]}
           />
@@ -114,17 +100,6 @@ export default makeScene2D(function* (view) {
       deepseekCodeRef2.code("DeepSeek-R1", 1)
     )
   );
-
-  yield* all(
-    deepseekSvgRef().size(70, 1),
-    deepseekSvgRef().left(deepseekSvgRef().left().addX(-40), 1),
-    deepseekCodeRef1().fontSize(70, 1),
-    deepseekCodeRef1().code("DeepSeek-V3-0324", 1),
-    deepseekCodeRef2.fontSize(70, 1),
-    deepseekCodeRef2.code("DeepSeek-R1-0528", 1)
-  );
-
-  yield* lineRef().end(1, 0.5);
 
   yield* waitUntil("deepseek");
 });

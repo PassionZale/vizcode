@@ -143,7 +143,7 @@ export default makeScene2D(function* (view) {
 
   yield* waitUntil("intro_appear");
 
-  yield* sequence(1, ...circleRefs.map((ref) => ref().scale(1.2, 1).to(1, 1)));
+  yield* sequence(1, ...circleRefs.map((ref) => ref().scale(1.5, 1).to(1, 1)));
 
   yield* waitUntil("intro_end");
 });

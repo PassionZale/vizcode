@@ -1,5 +1,13 @@
 import { Icon, Img, makeScene2D, Rect, Txt, word } from "@motion-canvas/2d";
-import { all, chain, createRef, DEFAULT, waitUntil } from "@motion-canvas/core";
+import {
+  all,
+  chain,
+  createRef,
+  createSignal,
+  DEFAULT,
+  waitFor,
+  waitUntil,
+} from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
 import deepSeekColor from "../assets/deepseek-color.svg";
 import { appear, disappear } from "@/shared/utils";
@@ -11,6 +19,8 @@ export default makeScene2D(function* (view) {
   const contentRef = createRef<Rect>();
   const deepseekSvgRef = createRef<Img>();
   const deepseekCodeRef1 = createRef<Code>();
+  const baseHighlightRef = createRef<Rect>();
+  const distillHighlightRef = createRef<Rect>();
 
   yield view.add(
     <Rect layout size={["100%", "100%"]} fill={"#121b21"} direction={"column"}>
@@ -142,6 +152,59 @@ export default makeScene2D(function* (view) {
       deepseekCodeRef2.x(0, 1),
       deepseekCodeRef2.code("DeepSeek-R1-Distill-Qwen-32B", 1)
     )
+  );
+
+  // 创建位置信号
+  const baseRange = createSignal(() => {
+    const range = deepseekCodeRef1().findFirstRange("Base");
+    const bboxes = deepseekCodeRef1().getSelectionBBox(range);
+    return bboxes[0].expand([6, 10]);
+  });
+
+  const distillRange = createSignal(() => {
+    const range = deepseekCodeRef2.findFirstRange("Distill-Qwen-32B");
+    const bboxes = deepseekCodeRef2.getSelectionBBox(range);
+    return bboxes[0].expand([6, 10]);
+  });
+
+  // 添加高亮框到contentRef（作为Code的兄弟元素）
+  contentRef().add(
+    <Rect
+      ref={baseHighlightRef}
+      offset={-1}
+      position={() => deepseekCodeRef1().position().add(baseRange().position)}
+      size={baseRange().size}
+      lineWidth={3}
+      stroke={"#ffcc00"}
+      radius={6}
+      opacity={0}
+    />
+  );
+
+  contentRef().add(
+    <Rect
+      ref={distillHighlightRef}
+      offset={-1}
+      position={() => deepseekCodeRef2.position().add(distillRange().position)}
+      size={distillRange().size}
+      lineWidth={3}
+      stroke={"#ffcc00"}
+      radius={6}
+      opacity={0}
+    />
+  );
+
+  // 高亮动画
+  yield* all(
+    baseHighlightRef().opacity(1, 0.8),
+    distillHighlightRef().opacity(1, 0.8)
+  );
+
+  yield* waitFor(2);
+
+  yield* all(
+    baseHighlightRef().opacity(0, 0.8),
+    distillHighlightRef().opacity(0, 0.8)
   );
 
   yield* waitUntil("deepseek");

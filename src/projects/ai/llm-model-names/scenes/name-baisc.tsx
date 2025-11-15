@@ -184,12 +184,5 @@ export default makeScene2D(function* (view) {
     v31HighlightRef().opacity(1, 0.8)
   );
 
-  yield* waitFor(2);
-
-  yield* all(
-    v3HighlightRef().opacity(0, 0.8),
-    v31HighlightRef().opacity(0, 0.8)
-  );
-
   yield* waitUntil("basic_end");
 });

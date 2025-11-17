@@ -71,7 +71,7 @@ DeepSeek 从 V1 到 V2 V3, 主要版本号更改通常表示重大更改，例�
 ```
 🏢 AI公司组织架构：
 ├─ Base models(基本模型)：大学毕业生（潜力股）
-├─ Instruct models(指示模型)：经验员工（主力军）
+├─ Instruct models(指令模型)：经验员工（主力军）
 ├─ Vision models(视觉模型)：艺术家（视觉专家）
 ├─ Code models(代码模型)：程序员（技术专家）
 ├─ Embedding models(嵌入模型)：图书管理员（整理专家）

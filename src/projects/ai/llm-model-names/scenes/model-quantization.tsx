@@ -1,10 +1,17 @@
-import { Icon, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { createRef, waitUntil } from "@motion-canvas/core";
+import { Icon, Img, makeScene2D, Node, Rect, Txt, Circle } from "@motion-canvas/2d";
+import { Vector2, createRef, createSignal, linear, waitUntil } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
+import oldSrc from "../assets/old.png";
+import currentSrc from "../assets/current.png";
 
 export default makeScene2D(function* (view) {
   const titleRef = createRef<Txt>();
   const wrapperRef = createRef<Rect>();
+  const backgroundsRef = createRef<Node>();
+  const imageMaskRef = createRef<Circle>();
+
+  // 创建预览尺寸信号，基于 wrapperRef 的尺寸
+  const previewSize = Vector2.createSignal(Vector2.zero);
 
   yield view.add(
     <Rect layout size={["100%", "100%"]} fill={"#121b21"} direction={"column"}>
@@ -24,7 +31,22 @@ export default makeScene2D(function* (view) {
       </Rect>
 
       <Rect grow={1}>
-        <Rect ref={wrapperRef} layout={false}></Rect>
+        <Rect ref={wrapperRef} size={['100%', '60%']} layout={false}>
+          <Node ref={backgroundsRef}>
+            <Img src={currentSrc} width={() => previewSize().x} />
+            <Node cache>
+              <Img src={oldSrc} width={() => previewSize().x} />
+              <Circle
+                fill={'red'}
+                ref={imageMaskRef}
+                scale={0}
+                position={() => previewSize().scale(-0.5)}
+                size={() => previewSize().magnitude * 2}
+                compositeOperation={'destination-out'}
+              />
+            </Node>
+          </Node>
+        </Rect>
       </Rect>
 
       <Rect
@@ -56,6 +78,12 @@ export default makeScene2D(function* (view) {
   );
 
   yield* titleRef().text("模型量化", 1);
+
+  // 设置预览尺寸为 wrapperRef 的尺寸
+  previewSize(new Vector2(wrapperRef().width(), wrapperRef().height()));
+
+	// 实现圆形擦除转场动画
+  yield* imageMaskRef().scale(1, 2, linear);
 
   yield* waitUntil("model_quantization");
 });

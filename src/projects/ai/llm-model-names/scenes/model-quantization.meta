@@ -2,8 +2,8 @@
   "version": 0,
   "timeEvents": [
     {
-      "name": "quantization_end",
-      "targetTime": 40.5
+      "name": "model_quantization",
+      "targetTime": 27.05012456439959
     }
   ],
   "seed": 397456632

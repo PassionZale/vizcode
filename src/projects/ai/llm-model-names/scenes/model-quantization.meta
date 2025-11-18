@@ -2,8 +2,8 @@
   "version": 0,
   "timeEvents": [
     {
-      "name": "basic_end",
-      "targetTime": 1
+      "name": "quantization_end",
+      "targetTime": 40.5
     }
   ],
   "seed": 397456632

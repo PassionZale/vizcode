@@ -57,5 +57,5 @@ export default makeScene2D(function* (view) {
 
   yield* titleRef().text("模型量化", 1);
 
-  yield* waitUntil("basic_end");
+  yield* waitUntil("model_quantization");
 });

@@ -1,14 +1,23 @@
-import { Icon, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { Vector2, createRef, waitUntil, linear } from "@motion-canvas/core";
+import { Circle, Icon, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
+import {
+  Vector2,
+  createRef,
+  waitUntil,
+  linear,
+  all,
+  waitFor,
+} from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
 import { CircleWipeTransition } from "@/nodes/CircleWipeTransition";
-import oldSrc from "../assets/old.png";
-import currentSrc from "../assets/current.png";
+import oldSrc from "../assets/3648x2736.jpg";
+import currentSrc from "../assets/1280x853.jpg";
+import { appear } from "@/shared/utils";
 
 export default makeScene2D(function* (view) {
   const titleRef = createRef<Txt>();
   const wrapperRef = createRef<Rect>();
-  const imageMaskRef = createRef<any>();
+  const imageMaskRef = createRef<Circle>();
+  const txtRef = createRef<Txt>();
 
   // 创建预览尺寸信号
   const previewSize = Vector2.createSignal(Vector2.zero);
@@ -38,6 +47,15 @@ export default makeScene2D(function* (view) {
             imageMaskRef={imageMaskRef}
             previewSize={previewSize}
           />
+
+          <Txt
+            ref={txtRef}
+            opacity={0}
+            position={[0, -500]}
+            {...TextStyles.title}
+          >
+            3648 × 2736, 1 MB
+          </Txt>
         </Rect>
       </Rect>
 
@@ -72,10 +90,21 @@ export default makeScene2D(function* (view) {
   yield* titleRef().text("模型量化", 1);
 
   // 设置预览尺寸为 wrapperRef 的尺寸
-  previewSize(new Vector2(wrapperRef().width(), wrapperRef().height()));
+  yield previewSize(new Vector2(wrapperRef().width(), wrapperRef().height()));
 
-  // 实现圆形擦除转场动画
-  yield* imageMaskRef().scale(1, 2, linear);
+  yield* appear(txtRef());
+
+  yield* waitFor(1);
+
+  yield* all(
+    txtRef().text("1280 × 853, 375 KB", 2),
+    txtRef().fill("#ffcc00", 2),
+    imageMaskRef().scale(1, 2, linear)
+  );
+
+  yield* waitFor(2);
+
+  yield* all(txtRef().text('让AI模型"减肥瘦身"', 1));
 
   yield* waitUntil("model_quantization");
 });

@@ -57,5 +57,5 @@ export default makeScene2D(function* (view) {
 
   yield* titleRef().text("模型蒸馏", 1);
 
-  yield* waitUntil("basic_end");
+  yield* waitUntil("model_distillation");
 });

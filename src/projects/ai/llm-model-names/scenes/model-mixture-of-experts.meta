@@ -2,8 +2,8 @@
   "version": 0,
   "timeEvents": [
     {
-      "name": "basic_end",
-      "targetTime": 1
+      "name": "model_moe",
+      "targetTime": 10.44615667079483
     }
   ],
   "seed": 4254740891

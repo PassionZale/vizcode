@@ -9,7 +9,7 @@ import {
 } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
 import { CircleWipeTransition } from "@/nodes/CircleWipeTransition";
-import oldSrc from "../assets/3648x2736.jpg";
+import oldSrc from "../assets/6000x4000.jpg";
 import currentSrc from "../assets/1280x853.jpg";
 import { appear } from "@/shared/utils";
 
@@ -54,7 +54,7 @@ export default makeScene2D(function* (view) {
             position={[0, -500]}
             {...TextStyles.title}
           >
-            3648 × 2736, 1 MB
+            6000 × 4000, 3 MB
           </Txt>
         </Rect>
       </Rect>

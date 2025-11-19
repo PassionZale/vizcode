@@ -9,7 +9,7 @@ import {
   waitUntil,
 } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
-import deepSeekColor from "../assets/deepseek-color.svg";
+import deepSeekSvg from "../assets/deepseek.svg";
 import { appear, disappear } from "@/shared/utils";
 import { Code } from "@motion-canvas/2d";
 import { JavascriptCode } from "@/nodes/Code";
@@ -43,7 +43,7 @@ export default makeScene2D(function* (view) {
         <Rect ref={contentRef} height={"60%"} width={"100%"} layout={false}>
           <Img
             ref={deepseekSvgRef}
-            src={deepSeekColor}
+            src={deepSeekSvg}
             size={80}
             scale={4}
             opacity={0}

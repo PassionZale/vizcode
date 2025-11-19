@@ -6,18 +6,21 @@ import {
   linear,
   all,
   waitFor,
+  chain,
 } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
 import { CircleWipeTransition } from "@/nodes/CircleWipeTransition";
 import oldSrc from "../assets/6000x4000.jpg";
 import currentSrc from "../assets/1280x853.jpg";
-import { appear } from "@/shared/utils";
+import { appear, disappear } from "@/shared/utils";
 
 export default makeScene2D(function* (view) {
   const titleRef = createRef<Txt>();
   const wrapperRef = createRef<Rect>();
-  const imageMaskRef = createRef<Circle>();
   const txtRef = createRef<Txt>();
+  const imageInfoRef = createRef<Txt>();
+  const rootRef = createRef<Node>();
+  const imageMaskRef = createRef<Circle>();
 
   // 创建预览尺寸信号
   const previewSize = Vector2.createSignal(Vector2.zero);
@@ -41,18 +44,21 @@ export default makeScene2D(function* (view) {
 
       <Rect grow={1}>
         <Rect ref={wrapperRef} size={["100%", "60%"]} layout={false}>
-          <CircleWipeTransition
-            oldSrc={oldSrc}
-            currentSrc={currentSrc}
-            imageMaskRef={imageMaskRef}
-            previewSize={previewSize}
-          />
-
           <Txt
             ref={txtRef}
             opacity={0}
             position={[0, -500]}
-            {...TextStyles.title}
+            {...TextStyles.subtitle}
+            fill={"#ffcc00"}
+          >
+            让AI模型"减肥瘦身"
+          </Txt>
+
+          <Txt
+            ref={imageInfoRef}
+            opacity={0}
+            position={[0, -500]}
+            {...TextStyles.subtitle}
           >
             6000 × 4000, 3 MB
           </Txt>
@@ -96,15 +102,25 @@ export default makeScene2D(function* (view) {
 
   yield* waitFor(1);
 
-  yield* all(
-    txtRef().text("1280 × 853, 375 KB", 2),
-    txtRef().fill("#ffcc00", 2),
-    imageMaskRef().scale(1, 2, linear)
+  yield* all(disappear(txtRef(), 0.5), appear(imageInfoRef(), 0.5), waitFor(1));
+
+  yield wrapperRef().add(
+    <CircleWipeTransition
+      oldSrc={oldSrc}
+      rootRef={rootRef}
+      currentSrc={currentSrc}
+      imageMaskRef={imageMaskRef}
+      previewSize={previewSize}
+    />
   );
 
-  yield* waitFor(2);
+  yield* waitFor(1);
 
-  yield* all(txtRef().text('让AI模型"减肥瘦身"', 1));
+  yield* all(
+    imageInfoRef().text("1280 × 853, 375 KB", 2),
+    imageInfoRef().fill("#ffcc00", 2),
+    imageMaskRef().scale(1, 5, linear)
+  );
 
   yield* waitUntil("model_quantization");
 });

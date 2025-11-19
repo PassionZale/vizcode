@@ -1,5 +1,5 @@
 import { Circle, Img, ImgProps, Node } from "@motion-canvas/2d";
-import { Reference, Vector2Signal } from "@motion-canvas/core";
+import { Reference, ReferenceReceiver, Vector2Signal } from "@motion-canvas/core";
 
 export interface CircleWipeTransitionProps {
   /**
@@ -13,6 +13,11 @@ export interface CircleWipeTransitionProps {
    * 支持静态图片URL或动态图片源
    */
   currentSrc: ImgProps["src"];
+
+  /**
+   * 根节点的引用
+   */
+  rootRef?: ReferenceReceiver<any>;
 
   /**
    * 圆形遮罩的引用 - 用于控制擦除动画
@@ -30,11 +35,12 @@ export interface CircleWipeTransitionProps {
 export function CircleWipeTransition({
   oldSrc,
   currentSrc,
+	rootRef,
   imageMaskRef,
   previewSize,
 }: CircleWipeTransitionProps) {
   return (
-    <Node>
+    <Node ref={rootRef}>
       <Img src={currentSrc} width={() => previewSize().x} />
       <Node cache>
         <Img src={oldSrc} width={() => previewSize().x} />

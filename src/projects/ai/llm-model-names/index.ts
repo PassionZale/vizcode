@@ -7,7 +7,6 @@ import modelPurposes from "./scenes/model-purposes?scene";
 import modeQuantization from "./scenes/model-quantization?scene";
 import modelDistillation from "./scenes/model-distillation?scene";
 import modelMOE from "./scenes/model-mixture-of-experts?scene";
-import end from "./scenes/end?scene";
 
 export default makeProject({
   scenes: [
@@ -19,6 +18,5 @@ export default makeProject({
     modeQuantization,
     modelDistillation,
     modelMOE,
-    end,
   ],
 });

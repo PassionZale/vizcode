@@ -1,22 +1,14 @@
-import {
-  Circle,
-  Img,
-  Latex,
-  makeScene2D,
-  Rect,
-  Txt,
-  Video,
-} from "@motion-canvas/2d";
-import { appear, waitForCut } from "@/shared/utils";
+import { Circle, Img, makeScene2D, Rect, Txt, Video } from "@motion-canvas/2d";
+import { appear } from "@/shared/utils";
 import avatar from "@/assets/images/avatar.jpg";
 import hugFace from "@/assets/videos/hug-face.webm";
 import heartHands from "@/assets/videos/heart-hands.webm";
 import glowingStar from "@/assets/videos/glowing-star.webm";
 import { TextStyles } from "@/shared/text-styles";
-import { all, createRef, sequence } from "@motion-canvas/core";
-import claude from "../assets/claude.svg";
-import glm from "../assets/glm.png";
-import qwen from "../assets/qwen.svg";
+import { all, createRef, sequence, waitUntil } from "@motion-canvas/core";
+import claude from "@/assets/images/models/claude.svg";
+import glm from "@/assets/images/models/glm.png";
+import qwen from "@/assets/images/models/qwen.svg";
 
 export default makeScene2D(function* (view) {
   const letters = ["C", "o", "d", "e", "S", "u", "g", "a", "r"];
@@ -113,7 +105,7 @@ export default makeScene2D(function* (view) {
             视频制作:
           </Txt>
           <Rect width={200} gap={16}>
-            <Img src={claude} size={40} fill={'#fff'} radius={6}/>
+            <Img src={claude} size={40} fill={"#fff"} radius={6} />
             <Txt {...TextStyles.body} fontFamily={"JetBrains Mono"}>
               ClaudeCode
             </Txt>
@@ -202,5 +194,5 @@ export default makeScene2D(function* (view) {
     sequence(0.1, ...txtRefs.map((ref) => appear(ref(), 0.8)))
   );
 
-  yield* waitForCut(10);
+  yield* waitUntil("end");
 });

@@ -9,7 +9,7 @@ import {
   waitUntil,
 } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
-import deepSeekSvg from "../assets/deepseek.svg";
+import deepSeekSvg from "@/assets/images/models/deepseek.svg";
 import { appear, disappear } from "@/shared/utils";
 import { Code } from "@motion-canvas/2d";
 import { JavascriptCode } from "@/nodes/Code";

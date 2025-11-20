@@ -108,16 +108,10 @@ export default makeScene2D(function* (view) {
       deepseekSvgRef().left(deepseekSvgRef().left().addX(-80), 1),
       deepseekCodeRef1().code("DeepSeek-V3", 1),
       deepseekCodeRef2.code("DeepSeek-R1", 1)
-    ),
-    // all(
-    //   deepseekCodeRef1().selection(word(0, 9, 2), 1.5),
-    //   deepseekCodeRef2.selection(word(0, 9, 2), 1.5)
-    // ),
-    // all(
-    //   deepseekCodeRef1().selection(DEFAULT, 1),
-    //   deepseekCodeRef2.selection(DEFAULT, 1)
-    // )
+    )
   );
+
+  yield* waitUntil("v3_r1");
 
   yield* all(
     deepseekSvgRef().size(70, 1),
@@ -128,19 +122,7 @@ export default makeScene2D(function* (view) {
     deepseekCodeRef2.code("DeepSeek-R1-0528", 1)
   );
 
-  // yield* chain(
-  //   all(
-  //     deepseekCodeRef1().selection(
-  //       deepseekCodeRef1().findFirstRange("0324"),
-  //       1.5
-  //     ),
-  //     deepseekCodeRef2.selection(deepseekCodeRef2.findFirstRange("0528"), 1.5)
-  //   ),
-  //   all(
-  //     deepseekCodeRef1().selection(DEFAULT, 1),
-  //     deepseekCodeRef2.selection(DEFAULT, 1)
-  //   )
-  // );
+  yield* waitUntil("0324_0528");
 
   yield* chain(
     all(
@@ -198,13 +180,6 @@ export default makeScene2D(function* (view) {
   yield* all(
     baseHighlightRef().opacity(1, 0.8),
     distillHighlightRef().opacity(1, 0.8)
-  );
-
-  yield* waitFor(2);
-
-  yield* all(
-    baseHighlightRef().opacity(0, 0.8),
-    distillHighlightRef().opacity(0, 0.8)
   );
 
   yield* waitUntil("deepseek");

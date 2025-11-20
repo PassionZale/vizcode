@@ -100,32 +100,37 @@ export default makeScene2D(function* (view) {
     </Rect>
   );
 
-  yield* titleRef().text("版本号 & 参数大小", 1);
-
-  yield* appear(code1Ref());
+  yield* all(titleRef().text("版本号 & 参数大小", 1), appear(code1Ref(), 1));
 
   yield* chain(
-    code1Ref().selection(code1Ref().findFirstRange("V1"), 1.5),
-    code1Ref().selection(code1Ref().findFirstRange("67B"), 1.5),
-    code1Ref().selection(DEFAULT, 1.5)
+    waitUntil("v1_start"),
+    code1Ref().selection(code1Ref().findFirstRange("V1"), 0.5),
+    waitUntil("v1"),
+    code1Ref().selection(code1Ref().findFirstRange("67B"), 0.5),
+    waitUntil("67b")
   );
 
-  // 解释版本号和名称
-  yield* waitUntil("version_size");
-
   yield* chain(
-    sequence(0.15, appear(code2Ref()), appear(code3Ref())),
+    sequence(
+      0.15,
+      code1Ref().selection(DEFAULT, 0.5),
+      appear(code2Ref(), 0.5),
+      appear(code3Ref(), 0.5)
+    ),
+		waitUntil('v1_2_3_start'),
     all(
-      code1Ref().selection(code1Ref().findFirstRange("V1-67B"), 1.5),
-      code2Ref().selection(code2Ref().findFirstRange("V2-236B"), 1.5),
-      code3Ref().selection(code3Ref().findFirstRange("V3-671B"), 1.5)
+      code1Ref().selection(code1Ref().findFirstRange("V1-67B"), 0.5),
+      code2Ref().selection(code2Ref().findFirstRange("V2-236B"), 0.5),
+      code3Ref().selection(code3Ref().findFirstRange("V3-671B"), 0.5)
     )
   );
 
+	yield* waitUntil('v1_2_3_end'),
+
   yield* all(
-    code1Ref().selection(DEFAULT, 1.5),
-    code2Ref().selection(DEFAULT, 1.5),
-    code3Ref().selection(DEFAULT, 1.5)
+    code1Ref().selection(DEFAULT, 0.5),
+    code2Ref().selection(DEFAULT, 0.5),
+    code3Ref().selection(DEFAULT, 0.5)
   );
 
   yield* chain(
@@ -184,5 +189,5 @@ export default makeScene2D(function* (view) {
     v31HighlightRef().opacity(1, 0.8)
   );
 
-  yield* waitUntil("basic_end");
+  yield* waitUntil("brand_version_end");
 });

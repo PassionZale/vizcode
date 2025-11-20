@@ -165,7 +165,7 @@ export default makeScene2D(function* (view) {
     cameraRef().centerOn(rectRefs[0](), 1)
   );
 
-  yield* waitFor(2);
+  yield* waitUntil("base_models");
 
   yield* all(
     yield rectRefs[1]().add(
@@ -191,7 +191,7 @@ export default makeScene2D(function* (view) {
       .map((txt) => txt.fill("#000", 1))
   );
 
-  yield* waitFor(2);
+  yield* waitUntil("instruct_models");
 
   yield* all(
     yield rectRefs[2]().add(
@@ -217,7 +217,7 @@ export default makeScene2D(function* (view) {
       .map((txt) => txt.fill("#000", 1))
   );
 
-  yield* waitFor(2);
+  yield* waitUntil("vision_models");
 
   yield* all(
     yield rectRefs[3]().add(
@@ -243,7 +243,7 @@ export default makeScene2D(function* (view) {
       .map((txt) => txt.fill("#000", 1))
   );
 
-  yield* waitFor(2);
+  yield* waitUntil("code_models");
 
   yield* all(
     yield rectRefs[4]().add(
@@ -269,7 +269,7 @@ export default makeScene2D(function* (view) {
       .map((txt) => txt.fill("#000", 1))
   );
 
-  yield* waitFor(2);
+  yield* waitUntil("embedding_models");
 
   yield* all(
     yield rectRefs[5]().add(
@@ -295,7 +295,7 @@ export default makeScene2D(function* (view) {
       .map((txt) => txt.fill("#000", 1))
   );
 
-  yield* waitFor(2);
+  yield* waitUntil("guard_models");
 
   yield* all(
     yield rectRefs[6]().add(
@@ -321,5 +321,5 @@ export default makeScene2D(function* (view) {
       .map((txt) => txt.fill("#000", 1))
   );
 
-  yield* waitUntil("model_purposes");
+  yield* waitUntil("reasoing_models");
 });

@@ -3,11 +3,11 @@
   "timeEvents": [
     {
       "name": "intro_appear",
-      "targetTime": 6.360931899641576
+      "targetTime": 4.520541867059804
     },
     {
       "name": "intro_end",
-      "targetTime": 14.360931899641576
+      "targetTime": 12.520541867059805
     }
   ],
   "seed": 2886782196

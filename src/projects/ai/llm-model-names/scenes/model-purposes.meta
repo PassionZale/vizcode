@@ -2,8 +2,32 @@
   "version": 0,
   "timeEvents": [
     {
-      "name": "model_purposes",
-      "targetTime": 27.24245320589411
+      "name": "base_models",
+      "targetTime": 5.6147762581425855
+    },
+    {
+      "name": "instruct_models",
+      "targetTime": 10.500845963381256
+    },
+    {
+      "name": "vision_models",
+      "targetTime": 13.560564371118726
+    },
+    {
+      "name": "code_models",
+      "targetTime": 18.578537225621375
+    },
+    {
+      "name": "embedding_models",
+      "targetTime": 22.90141133291443
+    },
+    {
+      "name": "guard_models",
+      "targetTime": 26.50879099089137
+    },
+    {
+      "name": "reasoing_models",
+      "targetTime": 31.00849210167674
     }
   ],
   "seed": 2715799569

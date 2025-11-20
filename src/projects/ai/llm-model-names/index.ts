@@ -7,8 +7,10 @@ import modelPurposes from "./scenes/model-purposes?scene";
 import modeQuantization from "./scenes/model-quantization?scene";
 import modelDistillation from "./scenes/model-distillation?scene";
 import modelMOE from "./scenes/model-mixture-of-experts?scene";
+import audio from "./assets/audio.mp3";
 
 export default makeProject({
+  audio: audio,
   scenes: [
     begin,
     deepseek,

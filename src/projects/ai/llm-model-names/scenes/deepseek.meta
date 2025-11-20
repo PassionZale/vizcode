@@ -2,8 +2,16 @@
   "version": 0,
   "timeEvents": [
     {
+      "name": "v3_r1",
+      "targetTime": 6.00416391486567
+    },
+    {
+      "name": "0324_0528",
+      "targetTime": 9.139140491375066
+    },
+    {
       "name": "deepseek",
-      "targetTime": 15.685623257666272
+      "targetTime": 16.008457762778303
     }
   ],
   "seed": 2647148163

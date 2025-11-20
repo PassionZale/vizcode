@@ -1,5 +1,5 @@
 import { Icon, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { chain, createRef, waitUntil } from "@motion-canvas/core";
+import { all, chain, createRef, waitUntil } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
 
 export default makeScene2D(function* (view) {
@@ -73,13 +73,14 @@ export default makeScene2D(function* (view) {
     </Rect>
   );
 
-  yield* titleRef().text("LLM model names", 1);
-
   yield* chain(
-    txtRefs[0]().text("每个 LLM 都有独特的品牌名称，", 1),
-    txtRefs[1]().text("承载着公司的技术理念和品牌定位，", 1),
-    txtRefs[2]().text("使用 LLM 的首要挑战之一，", 1),
-    txtRefs[3]().text("是理解它们的名称。", 1)
+    titleRef().text("LLM model names", 1),
+    chain(
+      txtRefs[0]().text("每个 LLM 都有独特的品牌名称，", 1),
+      txtRefs[1]().text("承载着公司的技术理念和品牌定位，", 1),
+      txtRefs[2]().text("使用 LLM 的首要挑战之一，", 1),
+      txtRefs[3]().text("是理解它们的名称。", 1)
+    )
   );
 
   yield* waitUntil("begin");

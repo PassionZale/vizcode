@@ -34,7 +34,7 @@ DeepSeek V1 67B, V1 表示版本号, 67B 表示参数大小,
 从 V3 到 <say-as interpret-as="digits">3.1</say-as>, 次要版本号更改通常对应于对模型的增量改进或对更新数据的重新训练.
 </speak>
 
-## model-purposes ??R
+## model-purposes
 
 <speak>
 模型用途就像一个公司里的不同员工:

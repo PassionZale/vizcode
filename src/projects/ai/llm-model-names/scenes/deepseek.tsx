@@ -109,14 +109,14 @@ export default makeScene2D(function* (view) {
       deepseekCodeRef1().code("DeepSeek-V3", 1),
       deepseekCodeRef2.code("DeepSeek-R1", 1)
     ),
-    all(
-      deepseekCodeRef1().selection(word(0, 9, 2), 1.5),
-      deepseekCodeRef2.selection(word(0, 9, 2), 1.5)
-    ),
-    all(
-      deepseekCodeRef1().selection(DEFAULT, 1),
-      deepseekCodeRef2.selection(DEFAULT, 1)
-    )
+    // all(
+    //   deepseekCodeRef1().selection(word(0, 9, 2), 1.5),
+    //   deepseekCodeRef2.selection(word(0, 9, 2), 1.5)
+    // ),
+    // all(
+    //   deepseekCodeRef1().selection(DEFAULT, 1),
+    //   deepseekCodeRef2.selection(DEFAULT, 1)
+    // )
   );
 
   yield* all(
@@ -128,19 +128,19 @@ export default makeScene2D(function* (view) {
     deepseekCodeRef2.code("DeepSeek-R1-0528", 1)
   );
 
-  yield* chain(
-    all(
-      deepseekCodeRef1().selection(
-        deepseekCodeRef1().findFirstRange("0324"),
-        1.5
-      ),
-      deepseekCodeRef2.selection(deepseekCodeRef2.findFirstRange("0528"), 1.5)
-    ),
-    all(
-      deepseekCodeRef1().selection(DEFAULT, 1),
-      deepseekCodeRef2.selection(DEFAULT, 1)
-    )
-  );
+  // yield* chain(
+  //   all(
+  //     deepseekCodeRef1().selection(
+  //       deepseekCodeRef1().findFirstRange("0324"),
+  //       1.5
+  //     ),
+  //     deepseekCodeRef2.selection(deepseekCodeRef2.findFirstRange("0528"), 1.5)
+  //   ),
+  //   all(
+  //     deepseekCodeRef1().selection(DEFAULT, 1),
+  //     deepseekCodeRef2.selection(DEFAULT, 1)
+  //   )
+  // );
 
   yield* chain(
     all(

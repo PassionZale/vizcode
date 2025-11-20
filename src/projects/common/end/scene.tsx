@@ -14,6 +14,15 @@ export default makeScene2D(function* (view) {
   const letters = ["C", "o", "d", "e", "S", "u", "g", "a", "r"];
   const colors = ["#4285F4", "#FBBC05", "#EA4335", "#34A853"];
 
+  // 数据驱动的制作信息列表
+  const credits = [
+    { label: "视频制作:", icon: claude, value: "ClaudeCode" },
+    { label: "脚本润色:", icon: glm, value: "GML-4.6" },
+    { label: "图片生成:", icon: qwen, value: "Qwen-Image-Edit" },
+    { label: "语音合成:", icon: qwen, value: "CosyVoice-V2" },
+    { label: "语音音色:", icon: qwen, value: "longlaotie_v2" },
+  ];
+
   const txtRefs = Array.from({ length: letters.length }, () =>
     createRef<Txt>()
   );
@@ -39,7 +48,13 @@ export default makeScene2D(function* (view) {
     >
       <Rect layout direction={"column"} alignItems={"center"} gap={50}>
         <Circle size={300} clip>
-          <Img ref={avatarRef} src={avatar} size={"100%"} />
+          <Img
+            ref={avatarRef}
+            opacity={0}
+            radius={300}
+            src={avatar}
+            size={"100%"}
+          />
         </Circle>
 
         <Rect
@@ -98,63 +113,33 @@ export default makeScene2D(function* (view) {
         layout
         direction={"column"}
         alignItems={"center"}
-        gap={30}
+        gap={20}
       >
-        <Rect layout direction={"row"} gap={32}>
-          <Txt {...TextStyles.body} fontWeight={800}>
-            视频制作:
-          </Txt>
-          <Rect width={200} gap={16}>
-            <Img src={claude} size={40} fill={"#fff"} radius={6} />
-            <Txt {...TextStyles.body} fontFamily={"JetBrains Mono"}>
-              ClaudeCode
-            </Txt>
+        {credits.map((item, index) => (
+          <Rect
+            key={`credit-${index}`}
+            layout
+            direction={"row"}
+            gap={20}
+            alignItems={"center"}
+            width={500}
+          >
+            {/* 固定宽度的 label 容器，确保所有标签右对齐 */}
+            <Rect width={140} justifyContent={"end"} alignItems={"center"}>
+              <Txt {...TextStyles.body} fontWeight={800}>
+                {item.label}
+              </Txt>
+            </Rect>
+
+            {/* value 容器，包含图标和文字 */}
+            <Rect layout direction="row" gap={16} alignItems="center">
+              <Img src={item.icon} size={40} fill={"#fff"} radius={6} />
+              <Txt {...TextStyles.body} fontFamily={"JetBrains Mono"}>
+                {item.value}
+              </Txt>
+            </Rect>
           </Rect>
-        </Rect>
-        <Rect layout direction={"row"} gap={32}>
-          <Txt {...TextStyles.body} fontWeight={800}>
-            脚本润色:
-          </Txt>
-          <Rect width={200} gap={16}>
-            <Img src={glm} size={40} fill={"#fff"} radius={6} />
-            <Txt {...TextStyles.body} fontFamily={"JetBrains Mono"}>
-              GML-4.6
-            </Txt>
-          </Rect>
-        </Rect>
-        <Rect layout direction={"row"} gap={32}>
-          <Txt {...TextStyles.body} fontWeight={800}>
-            图片生成:
-          </Txt>
-          <Rect width={200} gap={16}>
-            <Img src={qwen} size={40} fill={"#fff"} radius={6} />
-            <Txt {...TextStyles.body} fontFamily={"JetBrains Mono"}>
-              Qwen-Image-Edit
-            </Txt>
-          </Rect>
-        </Rect>
-        <Rect layout direction={"row"} gap={32}>
-          <Txt {...TextStyles.body} fontWeight={800}>
-            语音合成:
-          </Txt>
-          <Rect width={200} gap={16}>
-            <Img src={qwen} size={40} fill={"#fff"} radius={6} />
-            <Txt {...TextStyles.body} fontFamily={"JetBrains Mono"}>
-              CosyVoice-V2
-            </Txt>
-          </Rect>
-        </Rect>
-        <Rect layout direction={"row"} gap={32}>
-          <Txt {...TextStyles.body} fontWeight={800}>
-            语音音色:
-          </Txt>
-          <Rect width={200} gap={16}>
-            <Img src={qwen} size={40} fill={"#fff"} radius={6} />
-            <Txt {...TextStyles.body} fontFamily={"JetBrains Mono"}>
-              longlaotie-v2
-            </Txt>
-          </Rect>
-        </Rect>
+        ))}
       </Rect>
 
       <Rect
@@ -183,6 +168,7 @@ export default makeScene2D(function* (view) {
   yield* all(
     sequence(
       0.1,
+      appear(avatarRef(), 0.8),
       appear(heartHandsRectRef(), 0.8),
       yield heartHandsRef().play(),
       appear(glowingStarRectRef(), 0.8),

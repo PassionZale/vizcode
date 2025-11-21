@@ -68,7 +68,7 @@ export class OpeningScene extends Node {
             <Rect padding={20} fill={"#ffcc00"}>
               <Img ref={this.imgRef} size={[180, 180]} src={this.logoSrc()} />
             </Rect>
-            <Txt ref={this.titleRef} {...TextStyles.title}></Txt>
+            <Txt height={98} ref={this.titleRef} {...TextStyles.title}></Txt>
           </Rect>
         )}
 

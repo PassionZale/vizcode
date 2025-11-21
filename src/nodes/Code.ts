@@ -1,30 +1,37 @@
-import { Code, CodeProps, LezerHighlighter, withDefaults } from "@motion-canvas/2d";
+import {
+  Code,
+  CodeProps,
+  LezerHighlighter,
+  withDefaults,
+} from "@motion-canvas/2d";
 import { HighlightStyle } from "@codemirror/language";
-import { parser } from "@lezer/javascript";
+import { parser as JavascriptParser } from "@lezer/javascript";
+import { parser as JavaParser } from "@lezer/java";
+import { parser as MarkdownParser, GFM } from "@lezer/markdown";
 import { dracula } from "@uiw/codemirror-theme-dracula";
 
 const highlightStyle: HighlightStyle = (dracula as any)[1][2].value;
 
 const Defaults: CodeProps = {
-  fontFamily: 'JetBrains Mono',
-  lineHeight: '150%',
+  fontFamily: "JetBrains Mono",
+  lineHeight: "150%",
   fontSize: 32,
-}
+};
 
 const JavascriptHighlighter = new LezerHighlighter(
-  parser.configure({
+  JavascriptParser.configure({
     dialect: "ts tsx jsx",
   }),
-  highlightStyle,
+  highlightStyle
 );
 
 export const JavascriptCode = withDefaults(Code, {
   highlighter: JavascriptHighlighter,
-	...Defaults
+  ...Defaults,
 });
 
 const JavaHighlighter = new LezerHighlighter(
-  parser.configure({
+  JavaParser.configure({
     dialect: "java",
   }),
   highlightStyle
@@ -32,5 +39,15 @@ const JavaHighlighter = new LezerHighlighter(
 
 export const JavaCode = withDefaults(Code, {
   highlighter: JavaHighlighter,
-	...Defaults
+  ...Defaults,
+});
+
+const MarkdownHighlighter = new LezerHighlighter(
+  MarkdownParser.configure(GFM),
+  highlightStyle
+);
+
+export const MarkdownCode = withDefaults(Code, {
+  highlighter: MarkdownHighlighter,
+  ...Defaults,
 });

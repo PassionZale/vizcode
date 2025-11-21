@@ -1,0 +1,10 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "model_distillation",
+      "targetTime": 13.925174532142146
+    }
+  ],
+  "seed": 1247239160
+}

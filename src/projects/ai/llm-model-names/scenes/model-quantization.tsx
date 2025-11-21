@@ -1,0 +1,126 @@
+import { Circle, Icon, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
+import {
+  Vector2,
+  createRef,
+  waitUntil,
+  linear,
+  all,
+  waitFor,
+  chain,
+} from "@motion-canvas/core";
+import { TextStyles } from "@/shared/text-styles";
+import { CircleWipeTransition } from "@/nodes/CircleWipeTransition";
+import oldSrc from "../assets/6000x4000.jpg";
+import currentSrc from "../assets/1280x853.jpg";
+import { appear, disappear } from "@/shared/utils";
+
+export default makeScene2D(function* (view) {
+  const titleRef = createRef<Txt>();
+  const wrapperRef = createRef<Rect>();
+  const txtRef = createRef<Txt>();
+  const imageInfoRef = createRef<Txt>();
+  const rootRef = createRef<Node>();
+  const imageMaskRef = createRef<Circle>();
+
+  // 创建预览尺寸信号
+  const previewSize = Vector2.createSignal(Vector2.zero);
+
+  yield view.add(
+    <Rect layout size={["100%", "100%"]} fill={"#121b21"} direction={"column"}>
+      <Rect
+        size={["100%", "25%"]}
+        layout
+        padding={[40, 20]}
+        direction="column"
+        alignItems="center"
+        justifyContent="space-around"
+      >
+        <Rect padding={20} fill={"#ffcc00"}>
+          <Icon icon={"icon-park:brain"} size={180} />
+        </Rect>
+
+        <Txt ref={titleRef} {...TextStyles.title}></Txt>
+      </Rect>
+
+      <Rect grow={1}>
+        <Rect ref={wrapperRef} size={["100%", "60%"]} layout={false}>
+          <Txt
+            ref={txtRef}
+            opacity={0}
+            position={[0, -500]}
+            {...TextStyles.subtitle}
+            fill={"#ffcc00"}
+          >
+            让AI模型"减肥瘦身"
+          </Txt>
+
+          <Txt
+            ref={imageInfoRef}
+            opacity={0}
+            position={[0, -500]}
+            {...TextStyles.subtitle}
+          >
+            6000 × 4000, 3 MB
+          </Txt>
+        </Rect>
+      </Rect>
+
+      <Rect
+        size={["100%", "15%"]}
+        layout
+        padding={40}
+        alignItems={"start"}
+        justifyContent={"center"}
+      >
+        <Txt {...TextStyles.title} fill={"#4285F4"}>
+          C
+        </Txt>
+        <Txt {...TextStyles.title} fill={"#FBBC05"}>
+          o
+        </Txt>
+        <Txt {...TextStyles.title} fill={"#EA4335"}>
+          d
+        </Txt>
+        <Txt {...TextStyles.title} fill={"#34A853"}>
+          e
+        </Txt>
+        <Txt {...TextStyles.title}>S</Txt>
+        <Txt {...TextStyles.title}>u</Txt>
+        <Txt {...TextStyles.title}>g</Txt>
+        <Txt {...TextStyles.title}>a</Txt>
+        <Txt {...TextStyles.title}>r</Txt>
+      </Rect>
+    </Rect>
+  );
+
+  yield* titleRef().text("模型量化", 1);
+
+  // 设置预览尺寸为 wrapperRef 的尺寸
+  yield previewSize(new Vector2(wrapperRef().width(), wrapperRef().height()));
+
+  yield* appear(txtRef());
+
+  yield* waitFor(1);
+
+  yield* all(disappear(txtRef(), 0.5), appear(imageInfoRef(), 0.5), waitFor(1));
+
+  yield wrapperRef().add(
+    <CircleWipeTransition
+      oldSrc={oldSrc}
+      rootRef={rootRef}
+      currentSrc={currentSrc}
+      imageMaskRef={imageMaskRef}
+      previewSize={previewSize}
+    />
+  );
+
+  yield* waitFor(1);
+
+  yield* all(
+    imageInfoRef().text("1280 × 853, 375 KB", 2),
+    imageInfoRef().fill("#ffcc00", 2),
+    imageMaskRef().scale(1, 5, linear)
+  );
+
+  yield* waitUntil("model_quantization");
+});

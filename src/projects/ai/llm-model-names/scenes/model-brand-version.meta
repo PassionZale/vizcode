@@ -1,0 +1,30 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "v1_start",
+      "targetTime": 1.8585272669102175
+    },
+    {
+      "name": "v1",
+      "targetTime": 4.041664674136669
+    },
+    {
+      "name": "67b",
+      "targetTime": 5.073739597579792
+    },
+    {
+      "name": "v1_2_3_start",
+      "targetTime": 6.492325142707406
+    },
+    {
+      "name": "v1_2_3_end",
+      "targetTime": 14.655571979674372
+    },
+    {
+      "name": "brand_version_end",
+      "targetTime": 21.469426498836178
+    }
+  ],
+  "seed": 3324208661
+}

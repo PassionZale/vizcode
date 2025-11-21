@@ -1,11 +1,15 @@
-import { Icon, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { all, chain, createRef, waitUntil } from "@motion-canvas/core";
+import { Icon, Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
+import { createRef, sequence, waitUntil } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
+import moe from "../assets/moe.webp";
+import { appear } from "@/shared/utils";
 
 export default makeScene2D(function* (view) {
   const titleRef = createRef<Txt>();
-  const contentRef = createRef<Rect>();
-  const txtRefs = Array.from({ length: 6 }, () => createRef<Txt>());
+  const wrapperRef = createRef<Rect>();
+  const txt1Ref = createRef<Txt>();
+  const txt2Ref = createRef<Txt>();
+  const imgRef = createRef<Img>();
 
   yield view.add(
     <Rect layout size={["100%", "100%"]} fill={"#121b21"} direction={"column"}>
@@ -24,25 +28,28 @@ export default makeScene2D(function* (view) {
         <Txt ref={titleRef} {...TextStyles.title}></Txt>
       </Rect>
 
-      <Rect
-        grow={1}
-        ref={contentRef}
-        layout
-        direction={"column"}
-        paddingLeft={100}
-        paddingRight={100}
-        gap={50}
-        alignItems={"start"}
-        justifyContent={"center"}
-      >
-        {txtRefs.map((ref) => (
+      <Rect grow={1}>
+        <Rect ref={wrapperRef} layout={false}>
           <Txt
-            ref={ref}
+            ref={txt1Ref}
+						opacity={0}
+            position={[20, -450]}
             {...TextStyles.subtitle}
-            minHeight={65}
-            minWidth={60}
-          />
-        ))}
+            fill={"#ffcc00"}
+          >
+            Prompt
+          </Txt>
+          <Img ref={imgRef} opacity={0} src={moe} width={() => view.width()} />
+          <Txt
+            ref={txt2Ref}
+						opacity={0}
+            position={[20, 450]}
+            {...TextStyles.subtitle}
+            fill={"#ffcc00"}
+          >
+            Completion
+          </Txt>
+        </Rect>
       </Rect>
 
       <Rect
@@ -73,15 +80,9 @@ export default makeScene2D(function* (view) {
     </Rect>
   );
 
-  yield* chain(
-    titleRef().text("LLM model names", 1),
-    chain(
-      txtRefs[0]().text("每个 LLM 都有独特的品牌名称，", 1),
-      txtRefs[1]().text("承载着公司的技术理念和品牌定位，", 1),
-      txtRefs[2]().text("使用 LLM 的首要挑战之一，", 1),
-      txtRefs[3]().text("是理解它们的名称。", 1)
-    )
-  );
+  yield* titleRef().text("专家混合", 1);
 
-  yield* waitUntil("begin");
+  yield* sequence(0.15, appear(txt1Ref()), appear(imgRef()), appear(txt2Ref()));
+
+  yield* waitUntil("model_moe");
 });

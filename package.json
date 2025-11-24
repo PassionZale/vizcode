@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/PassionZale/vizcode#readme",
   "dependencies": {
+    "@lezer/html": "^1.3.12",
     "@lezer/java": "^1.1.3",
     "@lezer/javascript": "^1.5.1",
     "@lezer/markdown": "^1.6.0",

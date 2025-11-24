@@ -1,5 +1,5 @@
 import { Icon, Img, makeScene2D, Ray, Rect, Txt } from "@motion-canvas/2d";
-import { chain, createRef, sequence, waitUntil } from "@motion-canvas/core";
+import { createRef, sequence, waitUntil } from "@motion-canvas/core";
 import logoSvg from "../assets/logo.svg";
 import { TextStyles } from "@/shared/text-styles";
 import { appear } from "@/shared/utils";
@@ -36,11 +36,11 @@ export default makeScene2D(function* (view) {
         grow={1}
         ref={contentRef}
         layout
-        direction={"row"}
+        direction={"column"}
         alignItems={"center"}
         justifyContent={"space-between"}
         gap={30}
-      ></Rect>
+      />
 
       <Rect
         size={["100%", "15%"]}
@@ -76,7 +76,7 @@ export default makeScene2D(function* (view) {
     <Rect
       ref={rectRef1}
       grow={1}
-      direction={"column"}
+      direction={"row"}
       gap={30}
       alignItems={"center"}
     >
@@ -96,8 +96,8 @@ export default makeScene2D(function* (view) {
       <Ray
         opacity={0}
         ref={ray1}
-        fromX={-100}
-        toX={100}
+        fromY={-60}
+        toY={60}
         lineWidth={10}
         endArrow
         end={1}
@@ -108,7 +108,7 @@ export default makeScene2D(function* (view) {
         opacity={0}
         ref={rectRef2}
         grow={1}
-        direction={"column"}
+        direction={"row"}
         gap={30}
         alignItems={"center"}
       >
@@ -127,8 +127,8 @@ export default makeScene2D(function* (view) {
       <Ray
         ref={ray2}
         opacity={0}
-        fromX={-80}
-        toX={80}
+        fromY={-60}
+        toY={60}
         lineWidth={10}
         endArrow
         end={1}

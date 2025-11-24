@@ -8,6 +8,7 @@ import { HighlightStyle } from "@codemirror/language";
 import { parser as JavascriptParser } from "@lezer/javascript";
 import { parser as JavaParser } from "@lezer/java";
 import { parser as MarkdownParser, GFM } from "@lezer/markdown";
+import { parser as HTMLParser } from "@lezer/html";
 import { dracula } from "@uiw/codemirror-theme-dracula";
 
 const highlightStyle: HighlightStyle = (dracula as any)[1][2].value;
@@ -49,5 +50,17 @@ const MarkdownHighlighter = new LezerHighlighter(
 
 export const MarkdownCode = withDefaults(Code, {
   highlighter: MarkdownHighlighter,
+  ...Defaults,
+});
+
+const HTMLHighlighter = new LezerHighlighter(
+  HTMLParser.configure({
+    dialect: "html",
+  }),
+  highlightStyle
+);
+
+export const HTMLCode = withDefaults(Code, {
+  highlighter: HTMLHighlighter,
   ...Defaults,
 });

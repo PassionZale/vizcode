@@ -2,8 +2,16 @@
   "version": 0,
   "timeEvents": [
     {
+      "name": "index.html",
+      "targetTime": 10.61025432634579
+    },
+    {
+      "name": "bundle.old.js",
+      "targetTime": 15.137687717744088
+    },
+    {
       "name": "scene_2",
-      "targetTime": 1
+      "targetTime": 19.459377634357896
     }
   ],
   "seed": 1974311255

@@ -91,6 +91,8 @@ export default makeScene2D(function* (view) {
 
   yield* appear(rectRef1());
 
+  yield* waitUntil("files");
+
   yield contentRef().add(
     <>
       <Ray
@@ -121,6 +123,8 @@ export default makeScene2D(function* (view) {
   );
 
   yield* sequence(0.15, appear(ray1(), 0.5), appear(rectRef2(), 0.5));
+
+  yield* waitUntil("tools");
 
   yield contentRef().add(
     <>

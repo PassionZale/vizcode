@@ -120,10 +120,23 @@ export default makeScene2D(function* (view) {
 
   yield* titleRef().text("解决方法", 1);
 
+  yield* waitUntil("meta_1");
+
   yield* codeRef().selection(lines(0, 3), 1);
+
+  yield* waitUntil("meta_2");
+
   yield* codeRef().selection(lines(5, 8), 1);
+
+  yield* waitUntil("meta_3");
+
   yield* codeRef().selection(lines(10, 13), 1);
+
+  yield* waitUntil("meta_reset");
+
   yield* codeRef().selection(DEFAULT, 1);
+
+  yield* waitUntil("nginx");
 
   yield* all(
     txtRef().text("nginx.conf", 1),
@@ -147,13 +160,24 @@ server {
   }
 }
 `,
-      2
+      1
     )
   );
 
+	yield* waitUntil('nginx_1')
+
   yield* codeRef().selection(lines(5, 5), 1);
+
+	yield* waitUntil('nginx_2')
+
   yield* codeRef().selection(lines(6, 6), 1);
+
+	yield* waitUntil('nginx_3')
+
   yield* codeRef().selection(lines(7, 7), 1);
+
+	yield* waitUntil('nginx_4')
+	
   yield* codeRef().selection(DEFAULT, 1);
 
   yield* waitUntil("scene_3");

@@ -1,8 +1,16 @@
 import { Code, Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
-import { all, chain, createRef, DEFAULT, waitUntil } from "@motion-canvas/core";
+import {
+  all,
+  chain,
+  createRef,
+  DEFAULT,
+  sequence,
+  waitUntil,
+} from "@motion-canvas/core";
 import logoSvg from "../assets/logo.svg";
 import { TextStyles } from "@/shared/text-styles";
 import { HTMLCode, MarkdownCode } from "@/nodes/Code";
+import { appear } from "@/shared/utils";
 
 export default makeScene2D(function* (view) {
   const titleRef = createRef<Txt>();
@@ -28,7 +36,9 @@ export default makeScene2D(function* (view) {
           <Img size={[180, 180]} src={logoSvg} />
         </Rect>
 
-        <Txt ref={titleRef} {...TextStyles.title}></Txt>
+        <Txt ref={titleRef} {...TextStyles.title}>
+          根本原因
+        </Txt>
       </Rect>
 
       <Rect
@@ -115,8 +125,6 @@ dist
     </Rect>
   );
 
-  yield* titleRef().text("根本原因", 1);
-
   yield* all(rect1Ref().stroke("#ffcc00", 1), rect1Ref().lineWidth(6, 1));
 
   yield* chain(
@@ -133,10 +141,16 @@ dist
     html2Ref().selection(html2Ref().findFirstRange("index.html"), 1)
   );
 
+  yield* waitUntil("index.html");
+
   yield* all(
-    markdown1Ref().selection(markdown1Ref().findFirstRange("bundle.old.js"), 1),
-    html1Ref().selection(DEFAULT, 1)
+    markdown1Ref().selection(markdown1Ref().findFirstRange("index.html"), 1),
+    markdown2Ref().selection(markdown2Ref().findFirstRange("none"), 1)
   );
+
+  yield* waitUntil("bundle.old.js");
+
+  yield* all(html1Ref().selection(DEFAULT, 1));
 
   yield* waitUntil("scene_2");
 });

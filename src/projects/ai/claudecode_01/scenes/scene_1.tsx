@@ -76,7 +76,7 @@ export default makeScene2D(function* (view) {
         ref={codeRef}
         opacity={0}
         fontSize={56}
-        code={`840(pro) - 168(lit) = "672"`}
+        code={`840(pro) - 168(lit) = "¥672"`}
       />
       <Txt ref={text1Ref} opacity={0} {...TextStyles.subtitle}>
         视觉理解
@@ -100,9 +100,9 @@ export default makeScene2D(function* (view) {
   );
 
   yield* all(
-    text1Ref().text("视觉理解 `@z_ai/mcp-server`", 1),
-    text2Ref().text("联网搜索 `tavily-mcp`", 1),
-    text3Ref().text("网页读取 `mcp-fetch-server`", 1)
+    text1Ref().text("视觉理解__`@z_ai/mcp-server`", 1),
+    text2Ref().text("联网搜索__`tavily-mcp`", 1),
+    text3Ref().text("网页读取__`mcp-fetch-server`", 1)
   );
 
   yield* waitUntil("scene_1");

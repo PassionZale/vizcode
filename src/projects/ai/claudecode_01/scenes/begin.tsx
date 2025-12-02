@@ -1,7 +1,7 @@
 import { Camera, Icon, Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
 import { all, createRef, waitUntil } from "@motion-canvas/core";
 import { TextStyles } from "@/shared/text-styles";
-import lit from "../assets/lit.png";
+import lite from "../assets/lite.png";
 import pro from "../assets/pro.png";
 import max from "../assets/max.png";
 
@@ -69,11 +69,13 @@ export default makeScene2D(function* (view) {
 
   yield contentRef().add(
     <Camera ref={cameraRef}>
-      <Img scale={0.5} ref={imgRefs[0]} src={lit} x={-340} />
+      <Img scale={0.5} ref={imgRefs[0]} src={lite} x={-340} />
       <Img scale={0.5} ref={imgRefs[1]} src={pro} position={[0, 0]} />
       <Img scale={0.5} ref={imgRefs[2]} src={max} x={340} />
     </Camera>
   );
+
+	yield* waitUntil('168')
 
   yield* all(
     imgRefs[0]().scale(1.2, 1),
@@ -81,12 +83,16 @@ export default makeScene2D(function* (view) {
     cameraRef().centerOn(imgRefs[0](), 1)
   );
 
+	yield* waitUntil('840')
+
   yield* all(
     imgRefs[0]().scale(0.5, 0.5),
     imgRefs[1]().scale(1.2, 1),
     imgRefs[1]().zIndex(2, 0.5),
     cameraRef().centerOn(imgRefs[1](), 1)
   );
+
+	yield* waitUntil('1680')
 
   yield* all(
     imgRefs[1]().scale(0.5, 0.5),
@@ -96,6 +102,4 @@ export default makeScene2D(function* (view) {
   );
 
   yield* all(imgRefs[2]().scale(0.5, 1), cameraRef().reset(1));
-
-  yield* waitUntil("begin");
 });

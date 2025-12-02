@@ -68,7 +68,7 @@ export default makeScene2D(function* (view) {
     </Rect>
   );
 
-  yield* titleRef().text("Lit VS Pro", 1);
+  yield* titleRef().text("Lite VS Pro", 1);
 
   contentRef().add(
     <>
@@ -76,7 +76,7 @@ export default makeScene2D(function* (view) {
         ref={codeRef}
         opacity={0}
         fontSize={56}
-        code={`840(pro) - 168(lit) = "¥672"`}
+        code={`840(pro) - 168(lite) = "¥672"`}
       />
       <Txt ref={text1Ref} opacity={0} {...TextStyles.subtitle}>
         视觉理解
@@ -98,6 +98,8 @@ export default makeScene2D(function* (view) {
     appear(text2Ref(), 1),
     appear(text3Ref(), 1)
   );
+
+	yield* waitUntil('appear')
 
   yield* all(
     text1Ref().text("视觉理解__`@z_ai/mcp-server`", 1),

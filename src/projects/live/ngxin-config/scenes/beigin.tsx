@@ -1,6 +1,6 @@
 import { Img, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
 import { chain, createRef, waitUntil } from "@motion-canvas/core";
-import logoSvg from "../assets/logo.svg";
+import logoSvg from "@/assets/images/logos/live.svg";
 import { TextStyles } from "@/shared/text-styles";
 
 export default makeScene2D(function* (view) {

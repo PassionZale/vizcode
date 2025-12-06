@@ -10,14 +10,14 @@
       "x": 1080,
       "y": 1920
     },
-    "audioOffset": 0
+    "audioOffset": 0.5
   },
   "preview": {
     "fps": 30,
     "resolutionScale": 1
   },
   "rendering": {
-    "fps": 60,
+    "fps": 30,
     "resolutionScale": 2,
     "colorSpace": "srgb",
     "exporter": {
